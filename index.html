@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Air to Water Generators - Clean Water. Anywhere.</title>
+  <meta name="description" content="Extract clean, safe, mineral-balanced drinking water directly from the air using advanced, energy-efficient technology.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              300: '#7dd3fc',
+              400: '#38bdf8',
+              500: '#0096e6',
+              600: '#0084d6',
+              700: '#006bb0',
+              800: '#035388',
+              900: '#07436b',
+            },
+            navy: {
+              800: '#0f1d38',
+              900: '#071120',
+              950: '#040912',
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            heading: ['Outfit', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-white text-[#0e1c36] antialiased selection:bg-brand-600 selection:text-white">
+
+  <!-- ==================== HEADER & NAVBAR ==================== -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-[72px]">
+        
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 text-brand-600 group-hover:scale-105 transition-transform flex items-center justify-center">
+            <svg viewBox="0 0 100 100" class="w-full h-full fill-none stroke-current" stroke-width="3">
+              <circle cx="50" cy="50" r="46" stroke-width="2"/>
+              <circle cx="50" cy="27" r="23"/>
+              <circle cx="50" cy="73" r="23"/>
+              <circle cx="27" cy="38" r="23"/>
+              <circle cx="73" cy="38" r="23"/>
+              <circle cx="27" cy="62" r="23"/>
+              <circle cx="73" cy="62" r="23"/>
+              <circle cx="50" cy="50" r="23"/>
+            </svg>
+          </div>
+          <div class="flex flex-col leading-tight">
+            <span class="font-heading font-extrabold text-[17px] text-[#0e1c36] tracking-tight">Air to Water</span>
+            <span class="font-heading font-bold text-[14px] text-[#0e1c36] tracking-tight">Generators</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center space-x-7 text-[12px] font-bold tracking-wider text-[#0e1c36]">
+          <a href="#home" class="text-brand-600 relative py-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2.5px] after:bg-brand-600">HOME</a>
+          <a href="#how-it-works" class="hover:text-brand-600 transition-colors py-2 uppercase">HOW IT WORKS</a>
+          <div class="relative group py-2">
+            <button class="flex items-center gap-1 hover:text-brand-600 transition-colors uppercase">
+              PRODUCTS
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-slate-400 group-hover:text-brand-600 transition-transform"></i>
+            </button>
+            <div class="absolute top-full left-0 w-48 bg-white border border-slate-100 rounded-xl shadow-xl p-2 hidden group-hover:block transition-all">
+              <a href="#products" class="block px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-sky-50 hover:text-brand-600 rounded-lg">AWG-1000 Industrial</a>
+              <a href="#products" class="block px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-sky-50 hover:text-brand-600 rounded-lg">AWG-600 Commercial</a>
+              <a href="#products" class="block px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-sky-50 hover:text-brand-600 rounded-lg">AWG-250 Residential</a>
+            </div>
+          </div>
+          <a href="#applications" class="hover:text-brand-600 transition-colors py-2 uppercase">APPLICATIONS</a>
+          <a href="#about" class="hover:text-brand-600 transition-colors py-2 uppercase">ABOUT US</a>
+          <a href="#resources" class="hover:text-brand-600 transition-colors py-2 uppercase">RESOURCES</a>
+          <a href="#contact" class="hover:text-brand-600 transition-colors py-2 uppercase">CONTACT</a>
+        </nav>
+
+        <!-- Right Action Button -->
+        <div class="hidden sm:flex items-center">
+          <button class="open-quote-modal bg-brand-600 hover:bg-brand-700 text-white text-[12px] font-bold tracking-wider px-5 py-2.5 rounded-lg shadow-sm hover:shadow transition-all uppercase">
+            REQUEST A QUOTE
+          </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="lg:hidden flex items-center">
+          <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-600 hover:text-brand-600 hover:bg-slate-100 transition-colors">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-100 px-6 py-5 space-y-4">
+      <a href="#home" class="block font-semibold text-brand-600">HOME</a>
+      <a href="#how-it-works" class="block font-semibold text-slate-700 hover:text-brand-600">HOW IT WORKS</a>
+      <a href="#products" class="block font-semibold text-slate-700 hover:text-brand-600">PRODUCTS</a>
+      <a href="#applications" class="block font-semibold text-slate-700 hover:text-brand-600">APPLICATIONS</a>
+      <a href="#about" class="block font-semibold text-slate-700 hover:text-brand-600">ABOUT US</a>
+      <a href="#resources" class="block font-semibold text-slate-700 hover:text-brand-600">RESOURCES</a>
+      <a href="#contact" class="block font-semibold text-slate-700 hover:text-brand-600">CONTACT</a>
+      <button class="open-quote-modal w-full bg-brand-600 text-white font-bold py-3 rounded-lg text-xs uppercase tracking-wider">
+        REQUEST A QUOTE
+      </button>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section id="home" class="relative overflow-hidden hero-gradient-bg pt-8 pb-16 lg:pt-14 lg:pb-24">
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Left Content Column -->
+        <div class="lg:col-span-7 space-y-5 reveal-init">
+          <div class="inline-flex items-center">
+            <span class="text-[11px] font-extrabold tracking-widest text-brand-600 uppercase">CLEAN WATER. ANYWHERE.</span>
+          </div>
+
+          <h1 class="font-heading text-4xl sm:text-5xl lg:text-[56px] font-extrabold text-[#0e1c36] tracking-tight leading-[1.12]">
+            Make Water<br>
+            From Air.<br>
+            <span class="text-brand-600">Anytime. Anywhere.</span>
+          </h1>
+
+          <p class="text-[#596780] text-sm sm:text-[15px] leading-relaxed max-w-xl font-normal">
+            Our Air to Water Generators extract clean, safe drinking water from the air using advanced, energy-efficient technology. Sustainable hydration for homes, businesses, industries, and communities.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-wrap items-center gap-3.5 pt-2">
+            <a href="#products" class="bg-brand-600 hover:bg-brand-700 text-white text-[12px] font-bold tracking-wider px-6 py-3.5 rounded-lg shadow-sm hover:shadow transition-all uppercase">
+              EXPLORE PRODUCTS
+            </a>
+            <a href="#how-it-works" class="group flex items-center gap-2.5 bg-white border border-brand-600 hover:bg-sky-50 text-brand-600 text-[12px] font-bold tracking-wider px-5 py-3.5 rounded-full transition-all uppercase">
+              <span class="w-4 h-4 rounded-full border border-brand-600 flex items-center justify-center">
+                <i data-lucide="play" class="w-2 h-2 fill-brand-600 text-brand-600 ml-0.5"></i>
+              </span>
+              SEE HOW IT WORKS
+            </a>
+          </div>
+
+          <!-- 4 Pillars Feature Badges Row -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-slate-200/70">
+            <!-- Feature 1 -->
+            <div class="flex items-start gap-2.5">
+              <div class="w-6 h-6 text-brand-600 shrink-0 mt-0.5">
+                <i data-lucide="droplet" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-[12px] text-[#0e1c36]">Sustainable</h4>
+                <p class="text-[10.5px] text-[#596780] leading-tight">Renewable source of clean water</p>
+              </div>
+            </div>
+            <!-- Feature 2 -->
+            <div class="flex items-start gap-2.5">
+              <div class="w-6 h-6 text-brand-600 shrink-0 mt-0.5">
+                <i data-lucide="shield-check" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-[12px] text-[#0e1c36]">Reliable</h4>
+                <p class="text-[10.5px] text-[#596780] leading-tight">Consistent water in any climate</p>
+              </div>
+            </div>
+            <!-- Feature 3 -->
+            <div class="flex items-start gap-2.5">
+              <div class="w-6 h-6 text-brand-600 shrink-0 mt-0.5">
+                <i data-lucide="leaf" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-[12px] text-[#0e1c36]">Self-Sufficient</h4>
+                <p class="text-[10.5px] text-[#596780] leading-tight">Independence from bottled water & tanks</p>
+              </div>
+            </div>
+            <!-- Feature 4 -->
+            <div class="flex items-start gap-2.5">
+              <div class="w-6 h-6 text-brand-600 shrink-0 mt-0.5">
+                <i data-lucide="badge-dollar-sign" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-[12px] text-[#0e1c36]">Cost-Effective</h4>
+                <p class="text-[10.5px] text-[#596780] leading-tight">Lower costs over time</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Machine & Mountain Lake Landscape Visual -->
+        <div class="lg:col-span-5 flex justify-center lg:justify-end reveal-init delay-200">
+          <div class="relative w-full max-w-lg animate-float-subtle">
+            <img src="assets/hero-machine.png" alt="Air to Water Generator with Mountain Lake Landscape" class="w-full h-auto object-contain">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TRUSTED BY INDUSTRY SECTOR BAR ==================== -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-8 relative z-20">
+    <div class="bg-[#f2f8fd] border border-[#e1eff8] rounded-2xl shadow-sm py-6 px-8 reveal-init hover-lift">
+      <h3 class="text-center font-bold text-[11px] sm:text-[12px] tracking-widest text-[#1e293b] uppercase mb-6">
+        TRUSTED BY INDUSTRIES AND COMMUNITIES ACROSS THE GLOBE
+      </h3>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 items-center justify-items-center">
+        
+        <!-- Sector 1: Government -->
+        <div class="flex flex-col items-center gap-2 group cursor-pointer">
+          <div class="text-[#0084d6] group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18"/>
+              <path d="M5 21V10"/>
+              <path d="M9 21V10"/>
+              <path d="M15 21V10"/>
+              <path d="M19 21V10"/>
+              <path d="M2 10h20"/>
+              <path d="m12 2 10 6H2l10-6z"/>
+            </svg>
+          </div>
+          <span class="text-[12px] font-medium text-[#1e293b] group-hover:text-[#0084d6] transition-colors">Government</span>
+        </div>
+
+        <!-- Sector 2: Military -->
+        <div class="flex flex-col items-center gap-2 group cursor-pointer">
+          <div class="text-[#0084d6] group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              <path d="M19 5c1 1 2 3 1 5" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <span class="text-[12px] font-medium text-[#1e293b] group-hover:text-[#0084d6] transition-colors">Military</span>
+        </div>
+
+        <!-- Sector 3: Industrial -->
+        <div class="flex flex-col items-center gap-2 group cursor-pointer">
+          <div class="text-[#0084d6] group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 20h20"/>
+              <path d="M4 20V5c0-.6.4-1 1-1h2c.6 0 1 .4 1 1v15"/>
+              <path d="M8 20v-7l5 3v-3l5 3v4"/>
+              <circle cx="17" cy="17" r="1"/>
+            </svg>
+          </div>
+          <span class="text-[12px] font-medium text-[#1e293b] group-hover:text-[#0084d6] transition-colors">Industrial</span>
+        </div>
+
+        <!-- Sector 4: Hospitality -->
+        <div class="flex flex-col items-center gap-2 group cursor-pointer">
+          <div class="text-[#0084d6] group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 19h18"/>
+              <path d="M4 16h16a8 8 0 0 0-16 0z"/>
+              <circle cx="12" cy="5" r="1.5"/>
+            </svg>
+          </div>
+          <span class="text-[12px] font-medium text-[#1e293b] group-hover:text-[#0084d6] transition-colors">Hospitality</span>
+        </div>
+
+        <!-- Sector 5: Agriculture -->
+        <div class="flex flex-col items-center gap-2 group cursor-pointer">
+          <div class="text-[#0084d6] group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 20h10"/>
+              <path d="M12 20v-9"/>
+              <path d="M12 11c0-4 4-7 8-7 0 4-3 8-8 7z"/>
+              <path d="M12 14c0-3-3-5-6-5 0 3 2 6 6 5z"/>
+            </svg>
+          </div>
+          <span class="text-[12px] font-medium text-[#1e293b] group-hover:text-[#0084d6] transition-colors">Agriculture</span>
+        </div>
+
+        <!-- Sector 6: Remote Living -->
+        <div class="flex flex-col items-center gap-2 group cursor-pointer">
+          <div class="text-[#0084d6] group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 10.5 12 3l9 7.5"/>
+              <path d="M5 9v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9"/>
+              <path d="M9 21v-6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6"/>
+            </svg>
+          </div>
+          <span class="text-[12px] font-medium text-[#1e293b] group-hover:text-[#0084d6] transition-colors">Remote Living</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== HOW IT WORKS SECTION ==================== -->
+  <section id="how-it-works" class="py-20 lg:py-24 bg-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Left Title & Intro -->
+        <div class="lg:col-span-4 space-y-4 reveal-init">
+          <span class="text-[11px] font-extrabold tracking-widest text-[#0084d6] uppercase">HOW IT WORKS</span>
+          
+          <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-[#0e1c36] leading-tight">
+            From Air<br>
+            to Water.<br>
+            <span class="text-[#0084d6]">Simply.</span>
+          </h2>
+
+          <p class="text-[#596780] text-sm leading-relaxed">
+            Our multi-stage process captures humidity from the air, purifies it, and delivers clean, mineral-balanced drinking water.
+          </p>
+
+          <div class="pt-2">
+            <a href="#about" class="inline-flex items-center gap-1.5 text-[11px] font-bold tracking-wider text-[#0084d6] hover:text-[#006bb0] uppercase group">
+              LEARN MORE ABOUT THE PROCESS
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right 4-Step Process Pipeline -->
+        <div class="lg:col-span-8 reveal-init delay-200">
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3.5 relative">
+            
+            <!-- Step 1: Air Intake -->
+            <div class="process-step-card bg-white hover:bg-sky-50/40 rounded-2xl p-4 border border-slate-100/90 shadow-xs flex flex-col items-center text-center transition-all cursor-pointer hover-lift relative">
+              <div class="w-full h-32 rounded-2xl bg-[#f2f8fe] flex items-center justify-center p-3 mb-3">
+                <!-- Air Intake Wavy Streamlines & Droplets -->
+                <svg class="w-20 h-20" viewBox="0 0 100 100" fill="none">
+                  <path d="M15,35 C35,35 45,28 65,28 C75,28 85,32 85,35" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round"/>
+                  <path d="M10,48 C30,48 45,42 60,42 C75,42 88,48 88,50" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/>
+                  <path d="M18,62 C38,62 48,56 68,56 C78,56 86,60 86,63" stroke="#0ea5e9" stroke-width="2.5" stroke-linecap="round"/>
+                  <path d="M12,75 C32,75 42,70 62,70 C72,70 82,74 82,76" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round"/>
+                  <!-- Droplets -->
+                  <circle cx="88" cy="32" r="1.5" fill="#38bdf8"/>
+                  <circle cx="92" cy="45" r="2" fill="#0284c7"/>
+                  <circle cx="90" cy="58" r="1.5" fill="#38bdf8"/>
+                  <circle cx="85" cy="68" r="1.5" fill="#0284c7"/>
+                </svg>
+              </div>
+              <h4 class="font-bold text-[13px] text-[#0084d6] mb-1">1. Air Intake</h4>
+              <p class="text-[11px] text-[#596780] leading-snug">Ambient air is drawn in through advanced filtration.</p>
+
+              <!-- Chevron Divider for Desktop -->
+              <div class="hidden md:flex absolute -right-3.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white border border-[#cbe4f9] text-[#0084d6] items-center justify-center shadow-xs">
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </div>
+            </div>
+
+            <!-- Step 2: Condensation -->
+            <div class="process-step-card bg-white hover:bg-sky-50/40 rounded-2xl p-4 border border-slate-100/90 shadow-xs flex flex-col items-center text-center transition-all cursor-pointer hover-lift relative">
+              <div class="w-full h-32 rounded-2xl bg-[#f2f8fe] flex items-center justify-center p-3 mb-3">
+                <!-- Condensation Cooling Coils & Droplets -->
+                <svg class="w-20 h-20" viewBox="0 0 100 100" fill="none">
+                  <defs>
+                    <linearGradient id="coilGrad" x1="0" y1="0" x2="100" y2="0" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#cbd5e1"/>
+                      <stop offset="0.5" stop-color="#f1f5f9"/>
+                      <stop offset="1" stop-color="#94a3b8"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M20,22 Q80,18 80,28 Q80,38 20,38 Q80,38 80,48 Q80,58 20,58 Q80,58 80,68 Q80,78 20,78" stroke="url(#coilGrad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <!-- Droplets forming on coil -->
+                  <circle cx="82" cy="30" r="2" fill="#38bdf8"/>
+                  <circle cx="82" cy="50" r="2.5" fill="#0284c7"/>
+                  <circle cx="50" cy="85" r="3" fill="#0284c7"/>
+                  <circle cx="50" cy="93" r="2" fill="#38bdf8"/>
+                </svg>
+              </div>
+              <h4 class="font-bold text-[13px] text-[#0084d6] mb-1">2. Condensation</h4>
+              <p class="text-[11px] text-[#596780] leading-snug">Moisture in the air is condensed into pure water.</p>
+
+              <div class="hidden md:flex absolute -right-3.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white border border-[#cbe4f9] text-[#0084d6] items-center justify-center shadow-xs">
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </div>
+            </div>
+
+            <!-- Step 3: Filtration -->
+            <div class="process-step-card bg-white hover:bg-sky-50/40 rounded-2xl p-4 border border-slate-100/90 shadow-xs flex flex-col items-center text-center transition-all cursor-pointer hover-lift relative">
+              <div class="w-full h-32 rounded-2xl bg-[#f2f8fe] flex items-center justify-center p-3 mb-3">
+                <!-- 3-Tier Isometric Filtration Plates & Water Drops -->
+                <svg class="w-20 h-20" viewBox="0 0 100 100" fill="none">
+                  <!-- Top Droplet -->
+                  <circle cx="50" cy="10" r="2.5" fill="#0284c7"/>
+                  <!-- Layer 1: White/Grey Filter -->
+                  <polygon points="50,18 82,30 50,42 18,30" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+                  <polygon points="18,30 50,42 50,46 18,34" fill="#94a3b8"/>
+                  <polygon points="82,30 50,42 50,46 82,34" fill="#64748b"/>
+                  <!-- Layer 2: Dark Carbon Filter -->
+                  <polygon points="50,38 82,50 50,62 18,50" fill="#1e293b"/>
+                  <polygon points="18,50 50,62 50,66 18,54" fill="#0f172a"/>
+                  <polygon points="82,50 50,62 50,66 82,54" fill="#334155"/>
+                  <!-- Layer 3: Cyan/Blue Mineral Filter -->
+                  <polygon points="50,58 82,70 50,82 18,70" fill="#38bdf8"/>
+                  <polygon points="18,70 50,82 50,86 18,74" fill="#0284c7"/>
+                  <polygon points="82,70 50,82 50,86 82,74" fill="#0369a1"/>
+                  <!-- Bottom Pure Droplets -->
+                  <circle cx="46" cy="92" r="2" fill="#0284c7"/>
+                  <circle cx="54" cy="94" r="2.5" fill="#0284c7"/>
+                </svg>
+              </div>
+              <h4 class="font-bold text-[13px] text-[#0084d6] mb-1">3. Filtration</h4>
+              <p class="text-[11px] text-[#596780] leading-snug">Multi-stage purification ensures clean, safe, great-tasting water.</p>
+
+              <div class="hidden md:flex absolute -right-3.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white border border-[#cbe4f9] text-[#0084d6] items-center justify-center shadow-xs">
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </div>
+            </div>
+
+            <!-- Step 4: Clean Water -->
+            <div class="process-step-card bg-white hover:bg-sky-50/40 rounded-2xl p-4 border border-slate-100/90 shadow-xs flex flex-col items-center text-center transition-all cursor-pointer hover-lift">
+              <div class="w-full h-32 rounded-2xl bg-[#f2f8fe] flex items-center justify-center p-3 mb-3">
+                <!-- Drinking Glass of Crystal Pure Water -->
+                <svg class="w-18 h-20" viewBox="0 0 100 120" fill="none">
+                  <path d="M22,12 L78,12 L68,108 C68,112 62,116 50,116 C38,116 32,112 32,108 Z" stroke="#cbd5e1" stroke-width="2.5" fill="none"/>
+                  <!-- Water Fill Gradient -->
+                  <path d="M26,38 Q50,33 74,38 L67,106 C67,110 59,113 50,113 C41,113 33,110 33,106 Z" fill="url(#glassWaterGrad)"/>
+                  <path d="M30,22 L27,98" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+                  <defs>
+                    <linearGradient id="glassWaterGrad" x1="50" y1="35" x2="50" y2="115" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#7dd3fc"/>
+                      <stop offset="0.6" stop-color="#0284c7"/>
+                      <stop offset="1" stop-color="#0369a1"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <h4 class="font-bold text-[13px] text-[#0084d6] mb-1">4. Clean Water</h4>
+              <p class="text-[11px] text-[#596780] leading-snug">Fresh, mineral-balanced drinking water ready when you are.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== BUILT FOR PERFORMANCE SECTION ==================== -->
+  <section id="products" class="py-16 lg:py-24 bg-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        
+        <!-- Left Generator Hardware with Dynamic Water Splash -->
+        <div class="lg:col-span-6 flex justify-center lg:justify-start relative reveal-init">
+          <div class="relative w-full max-w-[480px]">
+            <img src="assets/performance-machine.png" alt="Generator Machine with Dynamic Water Splash" class="w-full h-auto object-contain">
+          </div>
+        </div>
+
+        <!-- Right Feature Specs -->
+        <div class="lg:col-span-6 space-y-4 lg:space-y-5 reveal-init delay-200">
+          <span class="text-[11px] font-extrabold tracking-widest text-[#0084d6] uppercase">BUILT FOR PERFORMANCE</span>
+
+          <h2 class="font-heading text-3xl sm:text-[36px] font-extrabold text-[#0e1c36] leading-[1.18] tracking-tight">
+            Advanced Technology.<br>
+            Exceptional Results.
+          </h2>
+
+          <p class="text-[#596780] text-sm leading-relaxed max-w-lg">
+            Engineered for efficiency, durability, and ease of use. Our systems are designed to perform in the harshest environments while delivering consistent, high-quality water.
+          </p>
+
+          <!-- Checklist Items with Blue Outline Check Circles -->
+          <ul class="space-y-2.5 pt-1">
+            <li class="flex items-center gap-3 text-[13px] font-medium text-[#0e1c36]">
+              <svg class="w-4 h-4 text-[#0084d6] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+              <span>Produces up to 1,000+ gallons per day</span>
+            </li>
+            <li class="flex items-center gap-3 text-[13px] font-medium text-[#0e1c36]">
+              <svg class="w-4 h-4 text-[#0084d6] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+              <span>Operates in a wide range of climates</span>
+            </li>
+            <li class="flex items-center gap-3 text-[13px] font-medium text-[#0e1c36]">
+              <svg class="w-4 h-4 text-[#0084d6] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+              <span>Smart monitoring & remote management</span>
+            </li>
+            <li class="flex items-center gap-3 text-[13px] font-medium text-[#0e1c36]">
+              <svg class="w-4 h-4 text-[#0084d6] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+              <span>Low energy consumption</span>
+            </li>
+            <li class="flex items-center gap-3 text-[13px] font-medium text-[#0e1c36]">
+              <svg class="w-4 h-4 text-[#0084d6] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+              <span>Minimal maintenance</span>
+            </li>
+          </ul>
+
+          <div class="pt-2">
+            <a href="#products" class="inline-block bg-[#0084d6] hover:bg-[#006bb0] text-white text-[12px] font-bold tracking-wider px-7 py-3 rounded-lg shadow-sm hover:shadow transition-all uppercase">
+              VIEW OUR PRODUCTS
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== STATS COUNTER CARD ==================== -->
+  <section id="stats-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-20">
+    <div class="bg-white rounded-2xl border border-slate-100 shadow-md p-6 sm:p-8 reveal-init hover-lift">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 divide-y-2 md:divide-y-0 md:divide-x-2 divide-slate-50">
+        
+        <!-- Stat 1 -->
+        <div class="flex flex-col items-center text-center p-2">
+          <div class="text-brand-600 mb-2">
+            <i data-lucide="droplet" class="w-6 h-6"></i>
+          </div>
+          <div class="font-heading text-3xl font-extrabold text-[#0e1c36] stat-counter" data-target="1000" data-suffix="+">
+            0+
+          </div>
+          <div class="font-bold text-[12px] text-[#0e1c36] mt-1">Gallons Per Day</div>
+          <div class="text-[11px] text-[#596780]">Production Capacity</div>
+        </div>
+
+        <!-- Stat 2 -->
+        <div class="flex flex-col items-center text-center p-2 pt-6 md:pt-2">
+          <div class="text-brand-600 mb-2">
+            <i data-lucide="leaf" class="w-6 h-6"></i>
+          </div>
+          <div class="font-heading text-3xl font-extrabold text-[#0e1c36] stat-counter" data-target="100" data-suffix="%">
+            0%
+          </div>
+          <div class="font-bold text-[12px] text-[#0e1c36] mt-1">Renewable Source</div>
+          <div class="text-[11px] text-[#596780]">Powered by Air</div>
+        </div>
+
+        <!-- Stat 3 -->
+        <div class="flex flex-col items-center text-center p-2 pt-6 md:pt-2">
+          <div class="text-brand-600 mb-2">
+            <i data-lucide="globe" class="w-6 h-6"></i>
+          </div>
+          <div class="font-heading text-3xl font-extrabold text-[#0e1c36] stat-counter" data-target="50" data-suffix="+">
+            0+
+          </div>
+          <div class="font-bold text-[12px] text-[#0e1c36] mt-1">Countries Served</div>
+          <div class="text-[11px] text-[#596780]">And Growing</div>
+        </div>
+
+        <!-- Stat 4 -->
+        <div class="flex flex-col items-center text-center p-2 pt-6 md:pt-2">
+          <div class="text-brand-600 mb-2">
+            <i data-lucide="shield-check" class="w-6 h-6"></i>
+          </div>
+          <div class="font-heading text-3xl font-extrabold text-[#0e1c36] stat-counter" data-target="10" data-suffix="+ Years">
+            0+ Years
+          </div>
+          <div class="font-bold text-[12px] text-[#0e1c36] mt-1">Proven Reliability</div>
+          <div class="text-[11px] text-[#596780]">In the Field</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== APPLICATIONS SECTION ==================== -->
+  <section id="applications" class="py-16 lg:py-24 bg-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="max-w-2xl space-y-3.5 mb-10 reveal-init">
+        <span class="text-[11px] font-extrabold tracking-widest text-brand-600 uppercase">APPLICATIONS</span>
+        
+        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-[#0e1c36] leading-tight">
+          Water Independence<br>
+          For Any Need.
+        </h2>
+
+        <p class="text-[#596780] text-sm leading-relaxed">
+          From remote locations to everyday operations, our systems provide a reliable source of clean drinking water whenever and wherever you need it.
+        </p>
+
+        <div class="pt-1">
+          <a href="#contact" class="inline-flex items-center gap-1.5 text-[11px] font-bold tracking-wider text-brand-600 hover:text-brand-700 uppercase group">
+            EXPLORE ALL APPLICATIONS
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- 4 Cards Grid with Exact Mockup Photos -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 reveal-init delay-200">
+        
+        <!-- App Card 1: Homes & Off-Grid Living -->
+        <div class="group rounded-2xl overflow-hidden bg-[#f8fbfe] border border-slate-100 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col hover-lift">
+          <div class="relative h-40 w-full overflow-hidden bg-slate-100">
+            <img src="assets/app-homes.png" alt="Homes & Off-Grid Living" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          
+          <div class="p-4 relative flex-1 flex flex-col justify-between">
+            <div class="absolute -top-5 left-4 w-10 h-10 rounded-full bg-white shadow border border-slate-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+              <i data-lucide="home" class="w-4 h-4"></i>
+            </div>
+            <div class="pt-3">
+              <h4 class="font-bold text-[13px] text-[#0e1c36] group-hover:text-brand-600 transition-colors">
+                Homes & Off-Grid Living
+              </h4>
+            </div>
+          </div>
+        </div>
+
+        <!-- App Card 2: Industrial & Commercial -->
+        <div class="group rounded-2xl overflow-hidden bg-[#f8fbfe] border border-slate-100 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col hover-lift">
+          <div class="relative h-40 w-full overflow-hidden bg-slate-100">
+            <img src="assets/app-industrial.png" alt="Industrial & Commercial" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          
+          <div class="p-4 relative flex-1 flex flex-col justify-between">
+            <div class="absolute -top-5 left-4 w-10 h-10 rounded-full bg-white shadow border border-slate-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+              <i data-lucide="factory" class="w-4 h-4"></i>
+            </div>
+            <div class="pt-3">
+              <h4 class="font-bold text-[13px] text-[#0e1c36] group-hover:text-brand-600 transition-colors">
+                Industrial & Commercial
+              </h4>
+            </div>
+          </div>
+        </div>
+
+        <!-- App Card 3: Military & Government -->
+        <div class="group rounded-2xl overflow-hidden bg-[#f8fbfe] border border-slate-100 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col hover-lift">
+          <div class="relative h-40 w-full overflow-hidden bg-slate-100">
+            <img src="assets/app-military.png" alt="Military & Government" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          
+          <div class="p-4 relative flex-1 flex flex-col justify-between">
+            <div class="absolute -top-5 left-4 w-10 h-10 rounded-full bg-white shadow border border-slate-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+              <i data-lucide="shield" class="w-4 h-4"></i>
+            </div>
+            <div class="pt-3">
+              <h4 class="font-bold text-[13px] text-[#0e1c36] group-hover:text-brand-600 transition-colors">
+                Military & Government
+              </h4>
+            </div>
+          </div>
+        </div>
+
+        <!-- App Card 4: Agriculture & Rural Communities -->
+        <div class="group rounded-2xl overflow-hidden bg-[#f8fbfe] border border-slate-100 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col hover-lift">
+          <div class="relative h-40 w-full overflow-hidden bg-slate-100">
+            <img src="assets/app-agriculture.png" alt="Agriculture & Rural Communities" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          
+          <div class="p-4 relative flex-1 flex flex-col justify-between">
+            <div class="absolute -top-5 left-4 w-10 h-10 rounded-full bg-white shadow border border-slate-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+              <i data-lucide="sprout" class="w-4 h-4"></i>
+            </div>
+            <div class="pt-3">
+              <h4 class="font-bold text-[13px] text-[#0e1c36] group-hover:text-brand-600 transition-colors">
+                Agriculture & Rural Communities
+              </h4>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CALL TO ACTION BANNER ==================== -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-14">
+    <div class="relative rounded-2xl overflow-hidden cta-banner-gradient p-8 sm:p-10 shadow-xl text-white reveal-init">
+      
+      <!-- Watermark Sacred Geometry / Flower of Life Emblem -->
+      <div class="absolute -left-10 -top-10 w-60 h-60 text-white/10 pointer-events-none">
+        <svg viewBox="0 0 100 100" class="w-full h-full fill-none stroke-current" stroke-width="2">
+          <circle cx="50" cy="50" r="45"/>
+          <circle cx="50" cy="27" r="23"/>
+          <circle cx="50" cy="73" r="23"/>
+          <circle cx="27" cy="38" r="23"/>
+          <circle cx="73" cy="38" r="23"/>
+          <circle cx="27" cy="62" r="23"/>
+          <circle cx="73" cy="62" r="23"/>
+          <circle cx="50" cy="50" r="23"/>
+        </svg>
+      </div>
+
+      <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6">
+        
+        <!-- Left Banner Content with Large Emblem -->
+        <div class="flex items-center gap-5">
+          <div class="hidden sm:flex w-16 h-16 text-cyan-300 shrink-0">
+            <svg viewBox="0 0 100 100" class="w-full h-full fill-none stroke-current" stroke-width="2.5">
+              <circle cx="50" cy="50" r="45"/>
+              <circle cx="50" cy="27" r="23"/>
+              <circle cx="50" cy="73" r="23"/>
+              <circle cx="27" cy="38" r="23"/>
+              <circle cx="73" cy="38" r="23"/>
+              <circle cx="27" cy="62" r="23"/>
+              <circle cx="73" cy="62" r="23"/>
+              <circle cx="50" cy="50" r="23"/>
+            </svg>
+          </div>
+          <div>
+            <h2 class="font-heading text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight">
+              Ready to Create Your<br class="hidden sm:inline"> Own Source of Water?
+            </h2>
+            <p class="text-sky-100 text-xs sm:text-[13px] mt-1.5 max-w-xl">
+              Discover how our Air to Water Generators can deliver clean, reliable water for your home, business, or community.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Action Button & Phone -->
+        <div class="flex flex-col items-center sm:items-end gap-2.5 shrink-0">
+          <button class="open-quote-modal inline-flex items-center gap-2 bg-white hover:bg-sky-50 text-brand-700 text-[12px] font-bold tracking-wider px-7 py-3 rounded-lg shadow hover:shadow-md transition-all uppercase">
+            REQUEST A QUOTE
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </button>
+          <span class="text-[12px] text-sky-100 font-normal">
+            or call us at <a href="tel:3615550123" class="text-white font-bold hover:underline">(361) 555-0123</a>
+          </span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer id="contact" class="bg-[#071120] text-slate-400 text-xs pt-14 pb-10 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Top Footer Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 pb-10 border-b border-slate-800/80">
+        
+        <!-- Brand Bio (Spans 2 columns) -->
+        <div class="lg:col-span-2 space-y-3.5">
+          <a href="#" class="flex items-center gap-2.5">
+            <div class="w-8 h-8 text-cyan-400">
+              <svg viewBox="0 0 100 100" class="w-full h-full fill-none stroke-current" stroke-width="3">
+                <circle cx="50" cy="50" r="45"/>
+                <circle cx="50" cy="27" r="23"/>
+                <circle cx="50" cy="73" r="23"/>
+                <circle cx="27" cy="38" r="23"/>
+                <circle cx="73" cy="38" r="23"/>
+                <circle cx="27" cy="62" r="23"/>
+                <circle cx="73" cy="62" r="23"/>
+                <circle cx="50" cy="50" r="23"/>
+              </svg>
+            </div>
+            <div class="flex flex-col leading-tight">
+              <span class="font-heading font-extrabold text-[15px] text-white">Air to Water</span>
+              <span class="font-heading font-bold text-[11px] text-slate-300">Generators</span>
+            </div>
+          </a>
+
+          <p class="text-slate-400 text-[11.5px] leading-relaxed max-w-xs">
+            Innovative air to water solutions providing clean, sustainable water where it's needed most.
+          </p>
+
+          <!-- Social Links -->
+          <div class="flex items-center space-x-2.5 pt-1">
+            <a href="#" class="w-7 h-7 rounded-full bg-slate-800 hover:bg-brand-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors">
+              <i data-lucide="facebook" class="w-3.5 h-3.5"></i>
+            </a>
+            <a href="#" class="w-7 h-7 rounded-full bg-slate-800 hover:bg-brand-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors">
+              <i data-lucide="linkedin" class="w-3.5 h-3.5"></i>
+            </a>
+            <a href="#" class="w-7 h-7 rounded-full bg-slate-800 hover:bg-brand-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors">
+              <i data-lucide="globe" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 1: PRODUCTS -->
+        <div class="space-y-2.5">
+          <h4 class="font-heading font-bold text-[11px] uppercase tracking-wider text-white">PRODUCTS</h4>
+          <ul class="space-y-2 text-[11.5px]">
+            <li><a href="#products" class="hover:text-cyan-400 transition-colors">AWG-1000</a></li>
+            <li><a href="#products" class="hover:text-cyan-400 transition-colors">AWG-600</a></li>
+            <li><a href="#products" class="hover:text-cyan-400 transition-colors">AWG-250</a></li>
+            <li><a href="#products" class="hover:text-cyan-400 transition-colors">Accessories</a></li>
+            <li><a href="#products" class="hover:text-cyan-400 transition-colors">Compare Models</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 2: COMPANY -->
+        <div id="about" class="space-y-2.5">
+          <h4 class="font-heading font-bold text-[11px] uppercase tracking-wider text-white">COMPANY</h4>
+          <ul class="space-y-2 text-[11.5px]">
+            <li><a href="#about" class="hover:text-cyan-400 transition-colors">About Us</a></li>
+            <li><a href="#how-it-works" class="hover:text-cyan-400 transition-colors">Technology</a></li>
+            <li><a href="#home" class="hover:text-cyan-400 transition-colors">Sustainability</a></li>
+            <li><a href="#" class="hover:text-cyan-400 transition-colors">News & Updates</a></li>
+            <li><a href="#" class="hover:text-cyan-400 transition-colors">Careers</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: RESOURCES -->
+        <div id="resources" class="space-y-2.5">
+          <h4 class="font-heading font-bold text-[11px] uppercase tracking-wider text-white">RESOURCES</h4>
+          <ul class="space-y-2 text-[11.5px]">
+            <li><a href="#" class="hover:text-cyan-400 transition-colors">Case Studies</a></li>
+            <li><a href="#" class="hover:text-cyan-400 transition-colors">Documentation</a></li>
+            <li><a href="#" class="hover:text-cyan-400 transition-colors">Support</a></li>
+            <li><a href="#" class="hover:text-cyan-400 transition-colors">FAQ</a></li>
+            <li><a href="#" class="hover:text-cyan-400 transition-colors">Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: CONTACT -->
+        <div class="space-y-2.5">
+          <h4 class="font-heading font-bold text-[11px] uppercase tracking-wider text-white">CONTACT</h4>
+          <ul class="space-y-2.5 text-[11.5px]">
+            <li class="flex items-start gap-2">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5"></i>
+              <span>123 Water Street<br>Corpus Christi, TX 78401</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="phone" class="w-3.5 h-3.5 text-cyan-400 shrink-0"></i>
+              <a href="tel:3615550123" class="hover:text-white transition-colors">(361) 555-0123</a>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="mail" class="w-3.5 h-3.5 text-cyan-400 shrink-0"></i>
+              <a href="mailto:info@airtowatergenerators.com" class="hover:text-white transition-colors break-all">info@airtowatergenerators.com</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Legal Row -->
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-3">
+        <div>
+          © 2025 Air to Water Generators. All rights reserved.
+        </div>
+        <div class="flex items-center space-x-4">
+          <a href="#" class="hover:text-slate-400 transition-colors">Privacy Policy</a>
+          <span>|</span>
+          <a href="#" class="hover:text-slate-400 transition-colors">Terms of Service</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==================== INTERACTIVE REQUEST A QUOTE MODAL ==================== -->
+  <div id="quote-modal" class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-xs">
+    <div class="modal-content bg-white w-full max-w-lg rounded-2xl shadow-2xl p-6 sm:p-7 relative border border-slate-100">
+      
+      <!-- Close Button -->
+      <button class="close-quote-modal absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-1.5 rounded-full hover:bg-slate-100 transition-colors">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="text-left mb-5">
+        <span class="text-[11px] font-extrabold tracking-widest text-brand-600 uppercase">INQUIRE NOW</span>
+        <h3 class="font-heading text-xl font-bold text-[#0e1c36] mt-1">Request a Custom Quote</h3>
+        <p class="text-xs text-[#596780] mt-1">Fill out the details below and our team will get back to you within 24 hours.</p>
+      </div>
+
+      <form id="quote-form" class="space-y-3.5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Full Name</label>
+            <input type="text" required placeholder="John Doe" class="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Email Address</label>
+            <input type="email" required placeholder="john@example.com" class="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Phone Number</label>
+            <input type="tel" placeholder="+1 (555) 000-0000" class="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Application Type</label>
+            <select class="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white">
+              <option>Residential / Off-Grid</option>
+              <option>Commercial & Industrial</option>
+              <option>Military & Government</option>
+              <option>Agricultural</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Estimated Daily Water Requirement</label>
+          <select class="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white">
+            <option>Up to 250 Gallons / Day</option>
+            <option>250 - 600 Gallons / Day</option>
+            <option>600 - 1,000+ Gallons / Day</option>
+            <option>Custom Industrial Capacity</option>
+          </select>
+        </div>
+
+        <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-lg text-xs uppercase tracking-wider shadow hover:shadow-md transition-all mt-1">
+          Submit Quote Request
+        </button>
+      </form>
+
+      <!-- Success State -->
+      <div id="quote-form-success" class="hidden text-center py-6 space-y-2.5">
+        <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
+          <i data-lucide="check" class="w-7 h-7 stroke-[3]"></i>
+        </div>
+        <h4 class="font-heading font-bold text-lg text-[#0e1c36]">Thank You!</h4>
+        <p class="text-xs text-[#596780] max-w-xs mx-auto">Your quote request has been received. Our engineering specialist will reach out shortly.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Initialize Lucide Icons & Custom Script -->
+  <script>
+    lucide.createIcons();
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
