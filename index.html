@@ -126,9 +126,16 @@
   </header>
 
   <!-- ==================== HERO SECTION ==================== -->
-  <section id="home" class="relative overflow-hidden hero-gradient-bg pt-8 pb-16 lg:pt-14 lg:pb-24">
+  <section id="home" class="relative overflow-hidden min-h-[580px] lg:min-h-[680px] flex items-center pt-10 pb-20 lg:pt-14 lg:pb-28">
     
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <!-- Hero Background Image (banner 01.jpg) -->
+    <div class="absolute inset-0 z-0">
+      <img src="assets/Photos/banner 01.jpg" alt="Air to Water Generation Hero Banner" class="w-full h-full object-cover object-[75%_center] sm:object-center">
+      <!-- Gradient overlay for text readability -->
+      <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-transparent sm:w-3/4 lg:w-3/5"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         
         <!-- Left Content Column -->
@@ -152,7 +159,7 @@
             <a href="#products" class="bg-brand-600 hover:bg-brand-700 text-white text-[12px] font-bold tracking-wider px-6 py-3.5 rounded-lg shadow-sm hover:shadow transition-all uppercase">
               EXPLORE PRODUCTS
             </a>
-            <a href="#how-it-works" class="group flex items-center gap-2.5 bg-white border border-brand-600 hover:bg-sky-50 text-brand-600 text-[12px] font-bold tracking-wider px-5 py-3.5 rounded-full transition-all uppercase">
+            <a href="#how-it-works" class="group flex items-center gap-2.5 bg-white border border-brand-600 hover:bg-sky-50 text-brand-600 text-[12px] font-bold tracking-wider px-5 py-3.5 rounded-full transition-all uppercase shadow-xs">
               <span class="w-4 h-4 rounded-full border border-brand-600 flex items-center justify-center">
                 <i data-lucide="play" class="w-2 h-2 fill-brand-600 text-brand-600 ml-0.5"></i>
               </span>
@@ -206,12 +213,8 @@
 
         </div>
 
-        <!-- Right Machine & Mountain Lake Landscape Visual -->
-        <div class="lg:col-span-5 flex justify-center lg:justify-end reveal-init delay-200">
-          <div class="relative w-full max-w-lg animate-float-subtle">
-            <img src="assets/hero-machine.png" alt="Air to Water Generator with Mountain Lake Landscape" class="w-full h-auto object-contain">
-          </div>
-        </div>
+        <!-- Right Visual Space for the machine in banner 01.jpg -->
+        <div class="hidden lg:block lg:col-span-5"></div>
 
       </div>
     </div>
