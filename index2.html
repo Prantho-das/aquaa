@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Air to Water Generator (AWG) - Pure Water From Air</title>
+  <meta name="description" content="Generate pure, mineral-balanced drinking water directly from ambient air humidity. On-site water production for homes, offices, and off-grid resilience.">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              300: '#7dd3fc',
+              400: '#38bdf8',
+              500: '#0096e6',
+              600: '#0084d6',
+              700: '#006bb0',
+              800: '#035388',
+              900: '#07436b',
+            },
+            navy: {
+              800: '#0f1d38',
+              900: '#071120',
+              950: '#040912',
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            heading: ['Outfit', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-white text-[#0e1c36] antialiased selection:bg-brand-600 selection:text-white">
+
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-[72px]">
+        
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 text-brand-600 group-hover:scale-105 transition-transform flex items-center justify-center">
+            <svg viewBox="0 0 100 100" class="w-full h-full fill-none stroke-current" stroke-width="3">
+              <circle cx="50" cy="50" r="46" stroke-width="2"/>
+              <circle cx="50" cy="27" r="23"/>
+              <circle cx="50" cy="73" r="23"/>
+              <circle cx="27" cy="38" r="23"/>
+              <circle cx="73" cy="38" r="23"/>
+              <circle cx="27" cy="62" r="23"/>
+              <circle cx="73" cy="62" r="23"/>
+              <circle cx="50" cy="50" r="23"/>
+            </svg>
+          </div>
+          <div class="flex flex-col leading-tight">
+            <span class="font-heading font-extrabold text-[17px] text-[#0e1c36] tracking-tight">Air to Water</span>
+            <span class="font-heading font-bold text-[14px] text-[#0e1c36] tracking-tight">Generators</span>
+          </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center space-x-6 text-[12px] font-bold tracking-wider text-[#0e1c36]">
+          <a href="#home" class="text-brand-600 relative py-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2.5px] after:bg-brand-600">HOME</a>
+          <a href="#how-it-works" class="hover:text-brand-600 transition-colors py-2 uppercase">HOW IT WORKS</a>
+          <a href="#what-is-awg" class="hover:text-brand-600 transition-colors py-2 uppercase">WHAT IS AWG?</a>
+          <a href="#applications" class="hover:text-brand-600 transition-colors py-2 uppercase">APPLICATIONS</a>
+          <a href="#why-awg" class="hover:text-brand-600 transition-colors py-2 uppercase">WHY AWG?</a>
+          <a href="#calculator" class="hover:text-brand-600 transition-colors py-2 uppercase">CALCULATOR</a>
+          <a href="#comparison" class="hover:text-brand-600 transition-colors py-2 uppercase">COMPARE</a>
+          <a href="#faq" class="hover:text-brand-600 transition-colors py-2 uppercase">FAQ</a>
+        </nav>
+
+        <div class="hidden sm:flex items-center gap-3">
+          <a href="tel:2133352121" class="text-xs font-bold text-[#0e1c36] hover:text-brand-600 transition-colors hidden xl:flex items-center gap-1.5">
+            <i data-lucide="phone" class="w-3.5 h-3.5 text-brand-600"></i>
+            (213) 335-2121
+          </a>
+          <button class="open-quote-modal bg-brand-600 hover:bg-brand-700 text-white text-[12px] font-bold tracking-wider px-5 py-2.5 rounded-lg shadow-sm hover:shadow transition-all uppercase">
+            ORDER NOW - $1,495
+          </button>
+        </div>
+
+        <div class="lg:hidden flex items-center">
+          <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-600 hover:text-brand-600 hover:bg-slate-100 transition-colors">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-100 px-6 py-5 space-y-3">
+      <a href="#home" class="block font-semibold text-brand-600">HOME</a>
+      <a href="#how-it-works" class="block font-semibold text-slate-700 hover:text-brand-600">HOW IT WORKS</a>
+      <a href="#what-is-awg" class="block font-semibold text-slate-700 hover:text-brand-600">WHAT IS AWG?</a>
+      <a href="#applications" class="block font-semibold text-slate-700 hover:text-brand-600">APPLICATIONS</a>
+      <a href="#why-awg" class="block font-semibold text-slate-700 hover:text-brand-600">WHY AWG?</a>
+      <a href="#calculator" class="block font-semibold text-slate-700 hover:text-brand-600">CALCULATOR</a>
+      <a href="#comparison" class="block font-semibold text-slate-700 hover:text-brand-600">COMPARE</a>
+      <a href="#faq" class="block font-semibold text-slate-700 hover:text-brand-600">FAQ</a>
+      <div class="pt-2">
+        <a href="tel:2133352121" class="flex items-center justify-center gap-2 text-xs font-bold text-slate-700 py-2 border rounded-lg mb-2">
+          <i data-lucide="phone" class="w-4 h-4 text-brand-600"></i>
+          Call (213) 335-2121
+        </a>
+        <button class="open-quote-modal w-full bg-brand-600 text-white font-bold py-3 rounded-lg text-xs uppercase tracking-wider">
+          ORDER NOW - $1,495 ($500 OFF)
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section id="home" class="relative overflow-hidden min-h-[580px] lg:min-h-[680px] flex items-center pt-10 pb-20 lg:pt-14 lg:pb-28">
+    <div class="absolute inset-0 z-0">
+      <img src="assets/Photos/HERO banner 03.jpg" alt="Air to Water Generation Hero Banner" class="w-full h-full object-cover object-[75%_center] sm:object-center">
+      <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-transparent sm:w-3/4 lg:w-3/5"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <div class="lg:col-span-7 space-y-5 reveal-init">
+          <div class="flex flex-wrap items-center gap-2.5">
+            <span class="text-[11px] font-extrabold tracking-widest text-brand-600 uppercase">ATMOSPHERIC WATER GENERATOR (AWG)</span>
+            <span class="inline-flex items-center gap-1.5 bg-emerald-50 border border-emerald-200 text-emerald-800 px-2.5 py-0.5 rounded-full text-[11px] font-bold">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              IN STOCK • SHIPS IMMEDIATELY
+            </span>
+          </div>
+
+          <h1 class="font-heading text-4xl sm:text-5xl lg:text-[54px] font-extrabold text-[#0e1c36] tracking-tight leading-[1.12]">
+            Generate Water<br>
+            From the Air in Your<br>
+            <span id="hero-rotating-word" class="text-brand-600 inline-block border-b-2 border-brand-400 pb-0.5">Home</span>.
+          </h1>
+
+          <p class="text-[#596780] text-sm sm:text-[15px] leading-relaxed max-w-xl font-normal">
+            Extract clean, pure, mineral-balanced drinking water directly from ambient air humidity. Zero groundwater depletion, no microplastics, and no plumbing required. Plug in and drink.
+          </p>
+
+          <div class="inline-flex items-center gap-3 bg-white/90 backdrop-blur-xs border border-slate-200/80 px-4 py-2.5 rounded-xl shadow-xs">
+            <div class="flex items-baseline gap-2">
+              <span class="text-2xl font-black text-[#0e1c36]">$1,495</span>
+              <span class="line-through text-slate-400 text-sm font-semibold">$1,995</span>
+            </div>
+            <span class="bg-emerald-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded uppercase tracking-wider">
+              SAVE $500
+            </span>
+            <span class="text-[11px] text-slate-500 hidden sm:inline">• Free Insured Shipping</span>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3 pt-1">
+            <button class="open-quote-modal bg-brand-600 hover:bg-brand-700 text-white text-[12px] font-bold tracking-wider px-6 py-3.5 rounded-lg shadow-sm hover:shadow transition-all uppercase">
+              ORDER NOW ($1,495)
+            </button>
+            <a href="tel:2133352121" class="flex items-center gap-2 bg-white border border-slate-200 hover:border-brand-600 text-[#0e1c36] hover:text-brand-600 text-[12px] font-bold tracking-wider px-5 py-3.5 rounded-lg transition-all shadow-xs uppercase">
+              <i data-lucide="phone-call" class="w-4 h-4 text-brand-600"></i>
+              (213) 335-2121
+            </a>
+            <a href="#how-it-works" class="group flex items-center gap-2 bg-white border border-brand-600 hover:bg-sky-50 text-brand-600 text-[12px] font-bold tracking-wider px-4 py-3.5 rounded-full transition-all uppercase shadow-xs">
+              <span class="w-4 h-4 rounded-full border border-brand-600 flex items-center justify-center">
+                <i data-lucide="play" class="w-2 h-2 fill-brand-600 text-brand-600 ml-0.5"></i>
+              </span>
+              HOW IT WORKS
+            </a>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-slate-200/70">
+            <div class="flex items-start gap-2.5">
+              <div class="w-6 h-6 text-brand-600 shrink-0 mt-0.5">
+                <i data-lucide="droplets" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-[12px] text-[#0e1c36]">30-95% Humidity</h4>
+                <p class="text-[10.5px] text-[#596780] leading-tight">Consistent generation in diverse climates</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-2.5">
+              <div class="w-6 h-6 text-brand-600 shrink-0 mt-0.5">
+                <i data-lucide="shield-check" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-[12px] text-[#0e1c36]">100% Pure</h4>
+                <p class="text-[10.5px] text-[#596780] leading-tight">UV-C sterilization & mineral enrichment</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-2.5">
+              <div class="w-6 h-6 text-brand-600 shrink-0 mt-0.5">
+                <i data-lucide="zap" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-[12px] text-[#0e1c36]">Plug & Produce</h4>
+                <p class="text-[10.5px] text-[#596780] leading-tight">No plumbing pipes or drain lines needed</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-2.5">
+              <div class="w-6 h-6 text-brand-600 shrink-0 mt-0.5">
+                <i data-lucide="badge-dollar-sign" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-[12px] text-[#0e1c36]">Save $1,200+/yr</h4>
+                <p class="text-[10.5px] text-[#596780] leading-tight">Eliminate 5-gal jug delivery & bottles</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="hidden lg:block lg:col-span-5"></div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 relative z-20">
+    <div class="bg-[#f2f8fd] border border-[#e1eff8] rounded-2xl shadow-sm py-6 px-8 reveal-init hover-lift">
+      <h3 class="text-center font-bold text-[11px] sm:text-[12px] tracking-widest text-[#1e293b] uppercase mb-6">
+        CERTIFIED PURITY & SUSTAINABILITY STANDARDS
+      </h3>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 items-center justify-items-center">
+        
+        <div class="flex flex-col items-center gap-2 group cursor-pointer text-center">
+          <div class="text-[#0084d6] group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
+          </div>
+          <span class="text-[12px] font-medium text-[#1e293b] group-hover:text-[#0084d6] transition-colors">EPA Standards</span>
+        </div>
+
+        <div class="flex flex-col items-center gap-2 group cursor-pointer text-center">
+          <div class="text-[#0084d6] group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+              <path d="M2 12h20"/>
+            </svg>
+          </div>
+          <span class="text-[12px] font-medium text-[#1e293b] group-hover:text-[#0084d6] transition-colors">WHO Compliant</span>
+        </div>
+
+        <div class="flex flex-col items-center gap-2 group cursor-pointer text-center">
+          <div class="text-[#0084d6] group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+            </svg>
+          </div>
+          <span class="text-[12px] font-medium text-[#1e293b] group-hover:text-[#0084d6] transition-colors">HEPA Air Filter</span>
+        </div>
+
+        <div class="flex flex-col items-center gap-2 group cursor-pointer text-center">
+          <div class="text-[#0084d6] group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20"/>
+              <path d="M4.93 4.93l14.14 14.14"/>
+              <path d="M2 12h20"/>
+              <path d="M4.93 19.07l14.14-14.14"/>
+            </svg>
+          </div>
+          <span class="text-[12px] font-medium text-[#1e293b] group-hover:text-[#0084d6] transition-colors">UV-C Sterilized</span>
+        </div>
+
+        <div class="flex flex-col items-center gap-2 group cursor-pointer text-center">
+          <div class="text-[#0084d6] group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"/>
+              <path d="M12 2v2"/>
+              <path d="M12 20v2"/>
+              <path d="m4.93 4.93 1.41 1.41"/>
+              <path d="m17.66 17.66 1.41 1.41"/>
+              <path d="M2 12h2"/>
+              <path d="M20 12h2"/>
+              <path d="m6.34 17.66-1.41 1.41"/>
+              <path d="m19.07 4.93-1.41 1.41"/>
+            </svg>
+          </div>
+          <span class="text-[12px] font-medium text-[#1e293b] group-hover:text-[#0084d6] transition-colors">Solar / Grid Ready</span>
+        </div>
+
+        <div class="flex flex-col items-center gap-2 group cursor-pointer text-center">
+          <div class="text-[#0084d6] group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          </div>
+          <span class="text-[12px] font-medium text-[#1e293b] group-hover:text-[#0084d6] transition-colors">1-Year Warranty</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="how-it-works" class="py-20 lg:py-24 bg-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <div class="lg:col-span-4 space-y-4 reveal-init">
+          <span class="text-[11px] font-extrabold tracking-widest text-[#0084d6] uppercase">HOW IT WORKS</span>
+          
+          <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-[#0e1c36] leading-tight">
+            From Air<br>
+            to Water.<br>
+            <span class="text-[#0084d6]">Pure & Simple.</span>
+          </h2>
+
+          <p class="text-[#596780] text-sm leading-relaxed">
+            Ambient air passes through medical-grade filtration, condenses on food-grade coils, and completes 4-stage purification with essential remineralization.
+          </p>
+
+          <div class="pt-2">
+            <a href="#what-is-awg" class="inline-flex items-center gap-1.5 text-[11px] font-bold tracking-wider text-[#0084d6] hover:text-[#006bb0] uppercase group">
+              LEARN MORE ABOUT THE PROCESS
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-8 reveal-init delay-200">
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3.5 relative">
+            
+            <div class="process-step-card bg-white hover:bg-sky-50/40 rounded-2xl p-4 border border-slate-100/90 shadow-xs flex flex-col items-center text-center transition-all cursor-pointer hover-lift relative">
+              <div class="w-full h-32 rounded-2xl bg-[#f2f8fe] flex items-center justify-center p-3 mb-3">
+                <svg class="w-20 h-20" viewBox="0 0 100 100" fill="none">
+                  <path d="M15,35 C35,35 45,28 65,28 C75,28 85,32 85,35" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round"/>
+                  <path d="M10,48 C30,48 45,42 60,42 C75,42 88,48 88,50" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/>
+                  <path d="M18,62 C38,62 48,56 68,56 C78,56 86,60 86,63" stroke="#0ea5e9" stroke-width="2.5" stroke-linecap="round"/>
+                  <path d="M12,75 C32,75 42,70 62,70 C72,70 82,74 82,76" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round"/>
+                  <circle cx="88" cy="32" r="1.5" fill="#38bdf8"/>
+                  <circle cx="92" cy="45" r="2" fill="#0284c7"/>
+                  <circle cx="90" cy="58" r="1.5" fill="#38bdf8"/>
+                  <circle cx="85" cy="68" r="1.5" fill="#0284c7"/>
+                </svg>
+              </div>
+              <h4 class="font-bold text-[13px] text-[#0084d6] mb-1">1. Air Intake</h4>
+              <p class="text-[11px] text-[#596780] leading-snug">HEPA air filter strips airborne dust, pollen, and PM2.5 particulates.</p>
+
+              <div class="hidden lg:flex absolute -right-3.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white border border-[#cbe4f9] text-[#0084d6] items-center justify-center shadow-xs">
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </div>
+            </div>
+
+            <div class="process-step-card bg-white hover:bg-sky-50/40 rounded-2xl p-4 border border-slate-100/90 shadow-xs flex flex-col items-center text-center transition-all cursor-pointer hover-lift relative">
+              <div class="w-full h-32 rounded-2xl bg-[#f2f8fe] flex items-center justify-center p-3 mb-3">
+                <svg class="w-20 h-20" viewBox="0 0 100 100" fill="none">
+                  <defs>
+                    <linearGradient id="coilGrad" x1="0" y1="0" x2="100" y2="0" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#cbd5e1"/>
+                      <stop offset="0.5" stop-color="#f1f5f9"/>
+                      <stop offset="1" stop-color="#94a3b8"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M20,22 Q80,18 80,28 Q80,38 20,38 Q80,38 80,48 Q80,58 20,58 Q80,58 80,68 Q80,78 20,78" stroke="url(#coilGrad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="82" cy="30" r="2" fill="#38bdf8"/>
+                  <circle cx="82" cy="50" r="2.5" fill="#0284c7"/>
+                  <circle cx="50" cy="85" r="3" fill="#0284c7"/>
+                  <circle cx="50" cy="93" r="2" fill="#38bdf8"/>
+                </svg>
+              </div>
+              <h4 class="font-bold text-[13px] text-[#0084d6] mb-1">2. Condensation</h4>
+              <p class="text-[11px] text-[#596780] leading-snug">Proprietary cooling coils condense atmospheric vapor into pure moisture.</p>
+
+              <div class="hidden lg:flex absolute -right-3.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white border border-[#cbe4f9] text-[#0084d6] items-center justify-center shadow-xs">
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </div>
+            </div>
+
+            <div class="process-step-card bg-white hover:bg-sky-50/40 rounded-2xl p-4 border border-slate-100/90 shadow-xs flex flex-col items-center text-center transition-all cursor-pointer hover-lift relative">
+              <div class="w-full h-32 rounded-2xl bg-[#f2f8fe] flex items-center justify-center p-3 mb-3">
+                <svg class="w-20 h-20" viewBox="0 0 100 100" fill="none">
+                  <circle cx="50" cy="10" r="2.5" fill="#0284c7"/>
+                  <polygon points="50,18 82,30 50,42 18,30" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+                  <polygon points="18,30 50,42 50,46 18,34" fill="#94a3b8"/>
+                  <polygon points="82,30 50,42 50,46 82,34" fill="#64748b"/>
+                  <polygon points="50,38 82,50 50,62 18,50" fill="#1e293b"/>
+                  <polygon points="18,50 50,62 50,66 18,54" fill="#0f172a"/>
+                  <polygon points="82,50 50,62 50,66 82,54" fill="#334155"/>
+                  <polygon points="50,58 82,70 50,82 18,70" fill="#38bdf8"/>
+                  <polygon points="18,70 50,82 50,86 18,74" fill="#0284c7"/>
+                  <polygon points="82,70 50,82 50,86 82,74" fill="#0369a1"/>
+                  <circle cx="46" cy="92" r="2" fill="#0284c7"/>
+                  <circle cx="54" cy="94" r="2.5" fill="#0284c7"/>
+                </svg>
+              </div>
+              <h4 class="font-bold text-[13px] text-[#0084d6] mb-1">3. UV-C & Filtration</h4>
+              <p class="text-[11px] text-[#596780] leading-snug">Carbon block & UV-C light destroy 99.9% of bacteria, viruses, and VOCs.</p>
+
+              <div class="hidden lg:flex absolute -right-3.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white border border-[#cbe4f9] text-[#0084d6] items-center justify-center shadow-xs">
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </div>
+            </div>
+
+            <div class="process-step-card bg-white hover:bg-sky-50/40 rounded-2xl p-4 border border-slate-100/90 shadow-xs flex flex-col items-center text-center transition-all cursor-pointer hover-lift">
+              <div class="w-full h-32 rounded-2xl bg-[#f2f8fe] flex items-center justify-center p-3 mb-3">
+                <svg class="w-18 h-20" viewBox="0 0 100 120" fill="none">
+                  <path d="M22,12 L78,12 L68,108 C68,112 62,116 50,116 C38,116 32,112 32,108 Z" stroke="#cbd5e1" stroke-width="2.5" fill="none"/>
+                  <path d="M26,38 Q50,33 74,38 L67,106 C67,110 59,113 50,113 C41,113 33,110 33,106 Z" fill="url(#glassWaterGrad)"/>
+                  <path d="M30,22 L27,98" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+                  <defs>
+                    <linearGradient id="glassWaterGrad" x1="50" y1="35" x2="50" y2="115" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#7dd3fc"/>
+                      <stop offset="0.6" stop-color="#0284c7"/>
+                      <stop offset="1" stop-color="#0369a1"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <h4 class="font-bold text-[13px] text-[#0084d6] mb-1">4. Mineralized Pure Water</h4>
+              <p class="text-[11px] text-[#596780] leading-snug">Calcium, magnesium, and electrolytes added for crisp, refreshing alkaline taste.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="what-is-awg" class="relative overflow-hidden min-h-[580px] lg:min-h-[660px] flex items-center py-16 lg:py-24">
+    <div class="absolute inset-0 z-0">
+      <img src="assets/Photos/banner 02.jpg" alt="Atmospheric Water Generator Technology" class="w-full h-full object-cover object-[25%_center] sm:object-center">
+      <div class="absolute inset-0 bg-gradient-to-l from-white/95 via-white/85 to-transparent sm:w-3/4 lg:w-3/5 ml-auto"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        
+        <div class="hidden lg:block lg:col-span-6"></div>
+
+        <div class="lg:col-span-6 space-y-4 lg:space-y-5 reveal-init delay-200">
+          <span class="text-[11px] font-extrabold tracking-widest text-[#0084d6] uppercase">WHAT IS AN AWG?</span>
+
+          <h2 class="font-heading text-3xl sm:text-[36px] font-extrabold text-[#0e1c36] leading-[1.18] tracking-tight">
+            The Atmosphere Holds<br>
+            3.1 Quadrillion Gallons.<br>
+            <span class="text-[#0084d6]">Tap Into It.</span>
+          </h2>
+
+          <p class="text-[#596780] text-sm leading-relaxed max-w-lg">
+            An Atmospheric Water Generator (AWG) captures the humidity naturally present in ambient air and converts it into pure, medical-grade drinking water. No dependency on aging municipal infrastructure, groundwater contamination, or plastic deliveries.
+          </p>
+
+          <ul class="space-y-2.5 pt-1">
+            <li class="flex items-center gap-3 text-[13px] font-medium text-[#0e1c36]">
+              <svg class="w-4 h-4 text-[#0084d6] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+              <span>Taps into 3.1 quadrillion gallons of atmospheric moisture</span>
+            </li>
+            <li class="flex items-center gap-3 text-[13px] font-medium text-[#0e1c36]">
+              <svg class="w-4 h-4 text-[#0084d6] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+              <span>Effective across 30% to 95% relative humidity</span>
+            </li>
+            <li class="flex items-center gap-3 text-[13px] font-medium text-[#0e1c36]">
+              <svg class="w-4 h-4 text-[#0084d6] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+              <span>Zero dependence on municipal water grids or wells</span>
+            </li>
+            <li class="flex items-center gap-3 text-[13px] font-medium text-[#0e1c36]">
+              <svg class="w-4 h-4 text-[#0084d6] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+              <span>Completely eliminates microplastics, lead, chlorine, and PFAS</span>
+            </li>
+            <li class="flex items-center gap-3 text-[13px] font-medium text-[#0e1c36]">
+              <svg class="w-4 h-4 text-[#0084d6] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+              <span>Continuous remineralization for optimal pH balance (7.2 - 7.6)</span>
+            </li>
+          </ul>
+
+          <div class="pt-2">
+            <button class="open-quote-modal inline-block bg-[#0084d6] hover:bg-[#006bb0] text-white text-[12px] font-bold tracking-wider px-7 py-3 rounded-lg shadow-sm hover:shadow transition-all uppercase">
+              ORDER YOUR UNIT - $1,495
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="stats-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-20">
+    <div class="bg-white rounded-2xl border border-slate-100 shadow-md p-6 sm:p-8 reveal-init hover-lift">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 divide-y-2 md:divide-y-0 md:divide-x-2 divide-slate-50">
+        
+        <div class="flex flex-col items-center text-center p-2">
+          <div class="text-brand-600 mb-2">
+            <i data-lucide="cloud-rain" class="w-6 h-6"></i>
+          </div>
+          <div class="font-heading text-3xl font-extrabold text-[#0e1c36] stat-counter" data-target="3" data-suffix=".1Q Gal">
+            0 Gal
+          </div>
+          <div class="font-bold text-[12px] text-[#0e1c36] mt-1">Atmospheric Water</div>
+          <div class="text-[11px] text-[#596780]">Renewable Earth Reservoir</div>
+        </div>
+
+        <div class="flex flex-col items-center text-center p-2 pt-6 md:pt-2">
+          <div class="text-brand-600 mb-2">
+            <i data-lucide="trash-2" class="w-6 h-6"></i>
+          </div>
+          <div class="font-heading text-3xl font-extrabold text-[#0e1c36] stat-counter" data-target="4000" data-suffix="+">
+            0+
+          </div>
+          <div class="font-bold text-[12px] text-[#0e1c36] mt-1">Plastic Bottles Diverted</div>
+          <div class="text-[11px] text-[#596780]">Per Unit Annually</div>
+        </div>
+
+        <div class="flex flex-col items-center text-center p-2 pt-6 md:pt-2">
+          <div class="text-brand-600 mb-2">
+            <i data-lucide="shield-check" class="w-6 h-6"></i>
+          </div>
+          <div class="font-heading text-3xl font-extrabold text-[#0e1c36] stat-counter" data-target="99" data-suffix=".9%">
+            0%
+          </div>
+          <div class="font-bold text-[12px] text-[#0e1c36] mt-1">Pathogen Elimination</div>
+          <div class="text-[11px] text-[#596780]">UV-C & HEPA Purity</div>
+        </div>
+
+        <div class="flex flex-col items-center text-center p-2 pt-6 md:pt-2">
+          <div class="text-brand-600 mb-2">
+            <i data-lucide="dollar-sign" class="w-6 h-6"></i>
+          </div>
+          <div class="font-heading text-3xl font-extrabold text-[#0e1c36] stat-counter" data-target="8" data-suffix="¢ / Gal">
+            0¢ / Gal
+          </div>
+          <div class="font-bold text-[12px] text-[#0e1c36] mt-1">Generation Cost</div>
+          <div class="text-[11px] text-[#596780]">vs $1.50+ Bottled Jugs</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="applications" class="py-16 lg:py-24 bg-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="max-w-2xl space-y-3.5 mb-10 reveal-init">
+        <span class="text-[11px] font-extrabold tracking-widest text-brand-600 uppercase">APPLICATIONS</span>
+        
+        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-[#0e1c36] leading-tight">
+          Water Independence<br>
+          For Any Need.
+        </h2>
+
+        <p class="text-[#596780] text-sm leading-relaxed">
+          From home kitchens and corporate break rooms to off-grid cabins and disaster relief, our AWG units deliver pure water wherever you need it.
+        </p>
+
+        <div class="pt-1">
+          <a href="#why-awg" class="inline-flex items-center gap-1.5 text-[11px] font-bold tracking-wider text-brand-600 hover:text-brand-700 uppercase group">
+            DISCOVER WHERE AWG FITS
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 reveal-init delay-200">
+        
+        <div class="group rounded-2xl overflow-hidden bg-[#f8fbfe] border border-slate-100 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col hover-lift">
+          <div class="relative h-48 w-full overflow-hidden bg-slate-100">
+            <img src="assets/Photos/residence 01.jpg" alt="Residential & Home Kitchens" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          
+          <div class="p-4 relative flex-1 flex flex-col justify-between">
+            <div class="absolute -top-5 left-4 w-10 h-10 rounded-full bg-white shadow border border-slate-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+              <i data-lucide="home" class="w-4 h-4"></i>
+            </div>
+            <div class="pt-3">
+              <h4 class="font-bold text-[13px] text-[#0e1c36] group-hover:text-brand-600 transition-colors">
+                Residential & Kitchens
+              </h4>
+              <p class="text-[11px] text-[#596780] mt-1">Pure drinking & cooking water for the whole family.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="group rounded-2xl overflow-hidden bg-[#f8fbfe] border border-slate-100 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col hover-lift">
+          <div class="relative h-48 w-full overflow-hidden bg-slate-100">
+            <img src="assets/Photos/office 01.jpg" alt="Commercial & Break Rooms" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          
+          <div class="p-4 relative flex-1 flex flex-col justify-between">
+            <div class="absolute -top-5 left-4 w-10 h-10 rounded-full bg-white shadow border border-slate-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+              <i data-lucide="briefcase" class="w-4 h-4"></i>
+            </div>
+            <div class="pt-3">
+              <h4 class="font-bold text-[13px] text-[#0e1c36] group-hover:text-brand-600 transition-colors">
+                Commercial & Break Rooms
+              </h4>
+              <p class="text-[11px] text-[#596780] mt-1">End 5-gallon jug deliveries and clutter in the office.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="group rounded-2xl overflow-hidden bg-[#f8fbfe] border border-slate-100 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col hover-lift">
+          <div class="relative h-48 w-full overflow-hidden bg-slate-100">
+            <img src="assets/Photos/emergency response 01.jpg" alt="Emergency & Disaster Relief" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          
+          <div class="p-4 relative flex-1 flex flex-col justify-between">
+            <div class="absolute -top-5 left-4 w-10 h-10 rounded-full bg-white shadow border border-slate-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+              <i data-lucide="shield-alert" class="w-4 h-4"></i>
+            </div>
+            <div class="pt-3">
+              <h4 class="font-bold text-[13px] text-[#0e1c36] group-hover:text-brand-600 transition-colors">
+                Emergency & Disaster Relief
+              </h4>
+              <p class="text-[11px] text-[#596780] mt-1">Immediate pure water lifeline when municipal grids fail.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="group rounded-2xl overflow-hidden bg-[#f8fbfe] border border-slate-100 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col hover-lift">
+          <div class="relative h-48 w-full overflow-hidden bg-slate-100">
+            <img src="assets/Photos/residence 02.jpg" alt="Off-Grid Cabins & Tiny Homes" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          
+          <div class="p-4 relative flex-1 flex flex-col justify-between">
+            <div class="absolute -top-5 left-4 w-10 h-10 rounded-full bg-white shadow border border-slate-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+              <i data-lucide="compass" class="w-4 h-4"></i>
+            </div>
+            <div class="pt-3">
+              <h4 class="font-bold text-[13px] text-[#0e1c36] group-hover:text-brand-600 transition-colors">
+                Off-Grid Cabins & Tiny Homes
+              </h4>
+              <p class="text-[11px] text-[#596780] mt-1">Complete autonomy without water hookups or wells.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="why-awg" class="py-16 bg-[#f8fbfe] border-y border-slate-100 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 reveal-init">
+        <div>
+          <span class="text-[11px] font-extrabold tracking-widest text-brand-600 uppercase">WHY AWG TECHNOLOGY?</span>
+          <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-[#0e1c36] leading-tight mt-1">
+            Proven Resilience & Sustainability
+          </h2>
+          <p class="text-[#596780] text-sm mt-2 max-w-xl">
+            Discover why homeowners, enterprises, and remote facilities are transitioning to atmospheric water generators for unconditional water security.
+          </p>
+        </div>
+        <div class="mt-4 md:mt-0 flex gap-2">
+          <span class="inline-flex items-center gap-1.5 bg-white border border-slate-200 text-[#0e1c36] text-xs font-semibold px-3 py-1.5 rounded-full shadow-xs">
+            <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-brand-600"></i> Pure Alkaline Hydration
+          </span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal-init delay-100">
+        
+        <div class="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover-lift group">
+          <div class="h-56 overflow-hidden relative">
+            <img src="assets/Photos/office 02.jpg" alt="On-Site Water Production" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-xs text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+              ON-SITE PRODUCTION
+            </span>
+          </div>
+          <div class="p-5">
+            <h4 class="font-heading font-bold text-[15px] text-[#0e1c36]">Zero Supply Chain Reliance</h4>
+            <p class="text-[#596780] text-xs mt-1.5 leading-relaxed">Produce your own water continuously. Never worry about grocery store shortages, delivery delays, boil alerts, or supply interruptions.</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover-lift group">
+          <div class="h-56 overflow-hidden relative">
+            <img src="assets/Photos/emergency response 02.jpg" alt="Water Resilience & Readiness" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-xs text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+              WATER RESILIENCE
+            </span>
+          </div>
+          <div class="p-5">
+            <h4 class="font-heading font-bold text-[15px] text-[#0e1c36]">Emergency Climate Readiness</h4>
+            <p class="text-[#596780] text-xs mt-1.5 leading-relaxed">Plug into standard 110V power, solar banks, or portable backup generators. Keep pure drinking water available through any natural disaster.</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover-lift group">
+          <div class="h-56 overflow-hidden relative">
+            <img src="assets/Photos/environment 01.jpg" alt="Eliminate Single-Use Plastics" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-xs text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+              PLASTIC-FREE PLANET
+            </span>
+          </div>
+          <div class="p-5">
+            <h4 class="font-heading font-bold text-[15px] text-[#0e1c36]">Eliminate 4,000+ Bottles / Year</h4>
+            <p class="text-[#596780] text-xs mt-1.5 leading-relaxed">Stop ingesting microplastics leached from plastic jugs. Each AWG prevents thousands of single-use plastic bottles from entering our oceans.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="calculator" class="py-16 lg:py-24 bg-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="bg-[#f2f8fd] border border-[#e1eff8] rounded-2xl shadow-sm p-6 sm:p-10 reveal-init hover-lift">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          <div class="lg:col-span-7 space-y-6">
+            <div>
+              <span class="text-[11px] font-extrabold tracking-widest text-[#0084d6] uppercase">SAVINGS CALCULATOR</span>
+              <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-[#0e1c36] leading-tight mt-1">
+                See How Much You Save<br>With Atmospheric Water.
+              </h2>
+              <p class="text-[#596780] text-sm mt-2">
+                Compare your current bottled water and delivery costs against AWG on-site generation at only ~$0.08 per gallon.
+              </p>
+            </div>
+
+            <div class="space-y-5 bg-white p-5 sm:p-6 rounded-xl border border-slate-200/80">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <label for="daily-gallons" class="text-xs font-bold text-[#0e1c36] uppercase tracking-wider">Daily Water Usage (Gallons)</label>
+                  <span id="daily-gallons-val" class="text-sm font-extrabold text-brand-600 bg-sky-50 px-2.5 py-0.5 rounded">5 Gal/day</span>
+                </div>
+                <input id="daily-gallons" type="range" min="1" max="25" value="5" step="1" class="w-full accent-brand-600 cursor-pointer h-2 bg-slate-200 rounded-lg">
+                <div class="flex justify-between text-[10px] text-slate-400 mt-1">
+                  <span>1 Gal (Solo)</span>
+                  <span>10 Gal (Family / Small Office)</span>
+                  <span>25 Gal (Commercial)</span>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <label for="cost-per-gallon" class="text-xs font-bold text-[#0e1c36] uppercase tracking-wider">Current Cost Per Gallon ($)</label>
+                  <span id="cost-per-gallon-val" class="text-sm font-extrabold text-brand-600 bg-sky-50 px-2.5 py-0.5 rounded">$1.50 / Gal</span>
+                </div>
+                <input id="cost-per-gallon" type="range" min="0.5" max="3.5" value="1.50" step="0.25" class="w-full accent-brand-600 cursor-pointer h-2 bg-slate-200 rounded-lg">
+                <div class="flex justify-between text-[10px] text-slate-400 mt-1">
+                  <span>$0.50 (Tap Filter)</span>
+                  <span>$1.50 (5-Gal Delivery)</span>
+                  <span>$3.50 (Single Bottles)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5">
+            <div class="bg-white rounded-2xl border border-slate-200/90 shadow-md p-6 sm:p-7 space-y-5">
+              <div class="border-b border-slate-100 pb-4">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Estimated Annual Comparison</span>
+                <div class="grid grid-cols-2 gap-4 mt-3">
+                  <div>
+                    <div class="text-[11px] text-slate-500 font-medium">Bottled Water Cost</div>
+                    <div id="calc-current-annual" class="font-heading text-xl font-bold text-rose-600 mt-0.5">$2,738 / yr</div>
+                  </div>
+                  <div>
+                    <div class="text-[11px] text-slate-500 font-medium">AWG Electric Cost</div>
+                    <div id="calc-awg-annual" class="font-heading text-xl font-bold text-slate-700 mt-0.5">$146 / yr</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-center">
+                <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">Your Estimated Net Savings</span>
+                <div id="calc-net-savings" class="font-heading text-3xl sm:text-4xl font-extrabold text-emerald-600 mt-1">
+                  $2,592 / yr
+                </div>
+                <p id="calc-payback" class="text-[11px] text-emerald-700 mt-1 font-medium">
+                  Machine pays for itself in ~7 months!
+                </p>
+              </div>
+
+              <button class="open-quote-modal w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-lg text-xs uppercase tracking-wider shadow hover:shadow-md transition-all">
+                CLAIM YOUR AWG UNIT - $1,495
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="comparison" class="py-16 bg-[#f8fbfe] border-y border-slate-100 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="max-w-2xl space-y-3.5 mb-10 reveal-init">
+        <span class="text-[11px] font-extrabold tracking-widest text-brand-600 uppercase">TECHNOLOGY COMPARISON</span>
+        
+        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-[#0e1c36] leading-tight">
+          How AWG Outperforms<br>Every Alternative.
+        </h2>
+
+        <p class="text-[#596780] text-sm leading-relaxed">
+          See why atmospheric water generation delivers superior purity, lower operating costs, and true resilience compared to conventional drinking water sources.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200/90 shadow-md overflow-hidden reveal-init delay-100">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="bg-slate-50 border-b border-slate-200">
+                <th class="py-4 px-5 font-heading font-extrabold text-[#0e1c36] uppercase tracking-wider w-1/4">Key Feature</th>
+                <th class="py-4 px-5 font-heading font-extrabold text-brand-600 bg-sky-50/60 uppercase tracking-wider w-1/4 border-x border-sky-100">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="droplet" class="w-4 h-4 text-brand-600"></i>
+                    AWG Technology
+                  </span>
+                </th>
+                <th class="py-4 px-4 font-heading font-bold text-slate-700 uppercase tracking-wider w-1/6">5-Gal Jug Delivery</th>
+                <th class="py-4 px-4 font-heading font-bold text-slate-700 uppercase tracking-wider w-1/6">Reverse Osmosis</th>
+                <th class="py-4 px-4 font-heading font-bold text-slate-700 uppercase tracking-wider w-1/6">Tap Water</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-slate-600">
+              <tr class="hover:bg-slate-50/50">
+                <td class="py-3.5 px-5 font-bold text-[#0e1c36]">Water Source</td>
+                <td class="py-3.5 px-5 font-semibold text-brand-600 bg-sky-50/30 border-x border-sky-100">100% Atmospheric Air</td>
+                <td class="py-3.5 px-4">Municipal / Well Trucks</td>
+                <td class="py-3.5 px-4">Municipal Plumbing</td>
+                <td class="py-3.5 px-4">Aging Pipe Grid</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50">
+                <td class="py-3.5 px-5 font-bold text-[#0e1c36]">Purity & Treatment</td>
+                <td class="py-3.5 px-5 font-semibold text-brand-600 bg-sky-50/30 border-x border-sky-100">HEPA + UV-C + Alkaline Minerals</td>
+                <td class="py-3.5 px-4">Microplastic Leaching Risk</td>
+                <td class="py-3.5 px-4">Acidic / Mineral Stripped</td>
+                <td class="py-3.5 px-4">Chlorine, Lead, PFAS Risk</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50">
+                <td class="py-3.5 px-5 font-bold text-[#0e1c36]">Cost Per Gallon</td>
+                <td class="py-3.5 px-5 font-semibold text-brand-600 bg-sky-50/30 border-x border-sky-100">~$0.08 / Gal (Electric)</td>
+                <td class="py-3.5 px-4">$1.20 - $2.50 / Gal</td>
+                <td class="py-3.5 px-4">$0.25 - $0.50 + Wastewater</td>
+                <td class="py-3.5 px-4">Low direct ($0.01)</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50">
+                <td class="py-3.5 px-5 font-bold text-[#0e1c36]">Environmental Footprint</td>
+                <td class="py-3.5 px-5 font-semibold text-brand-600 bg-sky-50/30 border-x border-sky-100">Zero plastic, zero water wasted</td>
+                <td class="py-3.5 px-4">Plastic jugs, trucking emissions</td>
+                <td class="py-3.5 px-4">Wastes 3-4 gallons per gallon produced</td>
+                <td class="py-3.5 px-4">Chemical water processing</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50">
+                <td class="py-3.5 px-5 font-bold text-[#0e1c36]">Disaster Independence</td>
+                <td class="py-3.5 px-5 font-semibold text-brand-600 bg-sky-50/30 border-x border-sky-100">100% Self-Sustaining (Solar/Gen)</td>
+                <td class="py-3.5 px-4">Disrupted by road closures</td>
+                <td class="py-3.5 px-4">Fails without water line pressure</td>
+                <td class="py-3.5 px-4">Fails during boil notices & cuts</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50">
+                <td class="py-3.5 px-5 font-bold text-[#0e1c36]">Installation Required</td>
+                <td class="py-3.5 px-5 font-semibold text-brand-600 bg-sky-50/30 border-x border-sky-100">None (Plug & Play)</td>
+                <td class="py-3.5 px-4">Heavy 42 lb lifting each week</td>
+                <td class="py-3.5 px-4">Under-sink plumbing required</td>
+                <td class="py-3.5 px-4">Municipal connection</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="faq" class="py-16 lg:py-24 bg-white relative">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-left mb-10 reveal-init">
+        <span class="text-[11px] font-extrabold tracking-widest text-brand-600 uppercase">FREQUENTLY ASKED QUESTIONS</span>
+        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-[#0e1c36] leading-tight mt-1">
+          Everything You Need to Know.
+        </h2>
+        <p class="text-[#596780] text-sm mt-2">
+          Clear answers about operation, climate requirements, filtration, and warranties.
+        </p>
+      </div>
+
+      <div class="space-y-3 reveal-init delay-100">
+        
+        <div class="faq-item border border-slate-200 rounded-xl overflow-hidden transition-all bg-white hover:border-brand-300">
+          <button class="faq-toggle w-full flex items-center justify-between p-4 sm:p-5 text-left font-heading font-bold text-sm sm:text-[15px] text-[#0e1c36]">
+            <span>1. How much water does an AWG generate each day?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-slate-400 shrink-0 transition-transform"></i>
+          </button>
+          <div class="faq-content hidden px-5 pb-5 text-xs sm:text-[13px] text-[#596780] leading-relaxed border-t border-slate-100 pt-3">
+            Output depends on ambient humidity and temperature. Under average indoor conditions (50-70% relative humidity, 70-85°F), the residential countertop/freestanding unit produces between 4 to 8 gallons (15 to 30 liters) of pure water daily—plenty for a family or office break room.
+          </div>
+        </div>
+
+        <div class="faq-item border border-slate-200 rounded-xl overflow-hidden transition-all bg-white hover:border-brand-300">
+          <button class="faq-toggle w-full flex items-center justify-between p-4 sm:p-5 text-left font-heading font-bold text-sm sm:text-[15px] text-[#0e1c36]">
+            <span>2. What relative humidity level is required for operation?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-slate-400 shrink-0 transition-transform"></i>
+          </button>
+          <div class="faq-content hidden px-5 pb-5 text-xs sm:text-[13px] text-[#596780] leading-relaxed border-t border-slate-100 pt-3">
+            Our systems operate effectively between 30% and 95% relative humidity. In very dry desert conditions (below 25-30% humidity), output decreases, while in typical humid climates and coastal areas, production runs at maximum peak efficiency.
+          </div>
+        </div>
+
+        <div class="faq-item border border-slate-200 rounded-xl overflow-hidden transition-all bg-white hover:border-brand-300">
+          <button class="faq-toggle w-full flex items-center justify-between p-4 sm:p-5 text-left font-heading font-bold text-sm sm:text-[15px] text-[#0e1c36]">
+            <span>3. How loud is the unit during active condensation?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-slate-400 shrink-0 transition-transform"></i>
+          </button>
+          <div class="faq-content hidden px-5 pb-5 text-xs sm:text-[13px] text-[#596780] leading-relaxed border-t border-slate-100 pt-3">
+            Sound levels range between 42 and 48 dB during active cooling, similar to a quiet household refrigerator or premium air purifier. Once the internal holding tank is full, the unit automatically switches into silent standby mode.
+          </div>
+        </div>
+
+        <div class="faq-item border border-slate-200 rounded-xl overflow-hidden transition-all bg-white hover:border-brand-300">
+          <button class="faq-toggle w-full flex items-center justify-between p-4 sm:p-5 text-left font-heading font-bold text-sm sm:text-[15px] text-[#0e1c36]">
+            <span>4. How much electricity does it consume?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-slate-400 shrink-0 transition-transform"></i>
+          </button>
+          <div class="faq-content hidden px-5 pb-5 text-xs sm:text-[13px] text-[#596780] leading-relaxed border-t border-slate-100 pt-3">
+            The unit operates on standard 110V/120V household outlets (consuming ~350-450W during active condensation). Average cost of electrical power per gallon produced is approximately $0.08 to $0.12—a 90%+ discount compared to purchasing bottled water.
+          </div>
+        </div>
+
+        <div class="faq-item border border-slate-200 rounded-xl overflow-hidden transition-all bg-white hover:border-brand-300">
+          <button class="faq-toggle w-full flex items-center justify-between p-4 sm:p-5 text-left font-heading font-bold text-sm sm:text-[15px] text-[#0e1c36]">
+            <span>5. Does the machine generate heat in the room?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-slate-400 shrink-0 transition-transform"></i>
+          </button>
+          <div class="faq-content hidden px-5 pb-5 text-xs sm:text-[13px] text-[#596780] leading-relaxed border-t border-slate-100 pt-3">
+            Like any refrigeration system, the compressor exhausts mildly warm air from the back vents while extracting moisture. In rooms with ordinary ventilation or air conditioning, temperature variation is barely noticeable.
+          </div>
+        </div>
+
+        <div class="faq-item border border-slate-200 rounded-xl overflow-hidden transition-all bg-white hover:border-brand-300">
+          <button class="faq-toggle w-full flex items-center justify-between p-4 sm:p-5 text-left font-heading font-bold text-sm sm:text-[15px] text-[#0e1c36]">
+            <span>6. How often do filters need to be changed?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-slate-400 shrink-0 transition-transform"></i>
+          </button>
+          <div class="faq-content hidden px-5 pb-5 text-xs sm:text-[13px] text-[#596780] leading-relaxed border-t border-slate-100 pt-3">
+            The external HEPA air mesh is easily rinsed under a faucet every 2-3 months. Internal carbon block and remineralization cartridges last 6 to 12 months, and the UV-C LED sterilization lamp is rated for 30,000+ operating hours.
+          </div>
+        </div>
+
+        <div class="faq-item border border-slate-200 rounded-xl overflow-hidden transition-all bg-white hover:border-brand-300">
+          <button class="faq-toggle w-full flex items-center justify-between p-4 sm:p-5 text-left font-heading font-bold text-sm sm:text-[15px] text-[#0e1c36]">
+            <span>7. What is the warranty and return policy?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-slate-400 shrink-0 transition-transform"></i>
+          </button>
+          <div class="faq-content hidden px-5 pb-5 text-xs sm:text-[13px] text-[#596780] leading-relaxed border-t border-slate-100 pt-3">
+            Every unit includes a comprehensive 1-Year Manufacturer Warranty covering parts and labor, plus a 30-Day In-Home Satisfaction Guarantee. If you are not completely satisfied with water purity and performance, contact us for an easy return.
+          </div>
+        </div>
+
+        <div class="faq-item border border-slate-200 rounded-xl overflow-hidden transition-all bg-white hover:border-brand-300">
+          <button class="faq-toggle w-full flex items-center justify-between p-4 sm:p-5 text-left font-heading font-bold text-sm sm:text-[15px] text-[#0e1c36]">
+            <span>8. How does AWG water taste compared to bottled water?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-slate-400 shrink-0 transition-transform"></i>
+          </button>
+          <div class="faq-content hidden px-5 pb-5 text-xs sm:text-[13px] text-[#596780] leading-relaxed border-t border-slate-100 pt-3">
+            Exceptionally crisp, sweet, and pure. Unlike distilled or reverse osmosis water which tastes flat and acidic, our remineralization cartridge infuses natural calcium and magnesium ions to yield an ideal alkaline pH of 7.2 to 7.6.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-14">
+    <div class="relative rounded-2xl overflow-hidden cta-banner-gradient p-8 sm:p-10 shadow-xl text-white reveal-init">
+      
+      <div class="absolute -left-10 -top-10 w-60 h-60 text-white/10 pointer-events-none">
+        <svg viewBox="0 0 100 100" class="w-full h-full fill-none stroke-current" stroke-width="2">
+          <circle cx="50" cy="50" r="45"/>
+          <circle cx="50" cy="27" r="23"/>
+          <circle cx="50" cy="73" r="23"/>
+          <circle cx="27" cy="38" r="23"/>
+          <circle cx="73" cy="38" r="23"/>
+          <circle cx="27" cy="62" r="23"/>
+          <circle cx="73" cy="62" r="23"/>
+          <circle cx="50" cy="50" r="23"/>
+        </svg>
+      </div>
+
+      <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6">
+        
+        <div class="flex items-center gap-5">
+          <div class="hidden sm:flex w-16 h-16 text-cyan-300 shrink-0">
+            <svg viewBox="0 0 100 100" class="w-full h-full fill-none stroke-current" stroke-width="2.5">
+              <circle cx="50" cy="50" r="45"/>
+              <circle cx="50" cy="27" r="23"/>
+              <circle cx="50" cy="73" r="23"/>
+              <circle cx="27" cy="38" r="23"/>
+              <circle cx="73" cy="38" r="23"/>
+              <circle cx="27" cy="62" r="23"/>
+              <circle cx="73" cy="62" r="23"/>
+              <circle cx="50" cy="50" r="23"/>
+            </svg>
+          </div>
+          <div>
+            <div class="inline-block bg-white/20 backdrop-blur-xs text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded uppercase tracking-wider mb-1.5">
+              LIMITED TIME OFFER • SAVE $500
+            </div>
+            <h2 class="font-heading text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight">
+              Ready to Generate Pure Water<br class="hidden sm:inline"> From Your Own Air?
+            </h2>
+            <p class="text-sky-100 text-xs sm:text-[13px] mt-1.5 max-w-xl">
+              Special Launch Pricing: <span class="font-bold text-white text-base">$1,495</span> (Original $1,995). Units in stock and ship immediately with 1-Year Warranty.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center sm:items-end gap-2.5 shrink-0">
+          <button class="open-quote-modal inline-flex items-center gap-2 bg-white hover:bg-sky-50 text-brand-700 text-[12px] font-bold tracking-wider px-7 py-3 rounded-lg shadow hover:shadow-md transition-all uppercase">
+            ORDER NOW - $1,495
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </button>
+          <span class="text-[12px] text-sky-100 font-normal">
+            or speak to an engineer at <a href="tel:2133352121" class="text-white font-bold hover:underline">(213) 335-2121</a>
+          </span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact" class="bg-[#081830] text-[#9bb0cb] text-[11.5px] pt-12 pb-8 border-t border-[#0e274d]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12 gap-8 pb-10 border-b border-[#142c52]">
+        
+        <div class="lg:col-span-4 space-y-4">
+          <a href="#" class="flex items-center gap-3 group">
+            <div class="w-9 h-9 text-[#38bdf8] group-hover:scale-105 transition-transform flex items-center justify-center">
+              <svg viewBox="0 0 100 100" class="w-full h-full fill-none stroke-current" stroke-width="3">
+                <circle cx="50" cy="50" r="45"/>
+                <circle cx="50" cy="27" r="23"/>
+                <circle cx="50" cy="73" r="23"/>
+                <circle cx="27" cy="38" r="23"/>
+                <circle cx="73" cy="38" r="23"/>
+                <circle cx="27" cy="62" r="23"/>
+                <circle cx="73" cy="62" r="23"/>
+                <circle cx="50" cy="50" r="23"/>
+              </svg>
+            </div>
+            <div class="flex flex-col leading-tight">
+              <span class="font-heading font-extrabold text-[16px] text-white tracking-tight">Air to Water</span>
+              <span class="font-heading font-bold text-[13px] text-white tracking-tight">Generators</span>
+            </div>
+          </a>
+
+          <p class="text-[#9bb0cb] text-[11px] leading-relaxed max-w-xs font-normal">
+            Innovative atmospheric water generators producing clean, sustainable, and reliable drinking water directly from air humidity.
+          </p>
+
+          <div class="flex items-center space-x-2 pt-1">
+            <a href="#" class="w-6 h-6 rounded-full border border-[#234575] hover:border-[#38bdf8] bg-[#0c203e] text-[#cbd5e1] hover:text-[#38bdf8] flex items-center justify-center text-[10px] transition-all">
+              <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24">
+                <path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5H18V0h-3.808C10.592 0 9 1.592 9 4.615V8z"/>
+              </svg>
+            </a>
+            <a href="#" class="w-6 h-6 rounded-full border border-[#234575] hover:border-[#38bdf8] bg-[#0c203e] text-[#cbd5e1] hover:text-[#38bdf8] flex items-center justify-center text-[10px] transition-all">
+              <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24">
+                <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
+              </svg>
+            </a>
+            <a href="#" class="w-6 h-6 rounded-full border border-[#234575] hover:border-[#38bdf8] bg-[#0c203e] text-[#cbd5e1] hover:text-[#38bdf8] flex items-center justify-center text-[10px] transition-all">
+              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-2 space-y-3">
+          <h4 class="font-heading font-bold text-[11px] uppercase tracking-wider text-white">PRODUCTS</h4>
+          <ul class="space-y-2 text-[11.5px]">
+            <li><a href="#what-is-awg" class="hover:text-[#38bdf8] transition-colors">Residential AWG</a></li>
+            <li><a href="#what-is-awg" class="hover:text-[#38bdf8] transition-colors">Commercial Unit</a></li>
+            <li><a href="#what-is-awg" class="hover:text-[#38bdf8] transition-colors">Emergency Mobile</a></li>
+            <li><a href="#what-is-awg" class="hover:text-[#38bdf8] transition-colors">HEPA Replacement</a></li>
+            <li><a href="#comparison" class="hover:text-[#38bdf8] transition-colors">Compare Models</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-2 space-y-3">
+          <h4 class="font-heading font-bold text-[11px] uppercase tracking-wider text-white">TECHNOLOGY</h4>
+          <ul class="space-y-2 text-[11.5px]">
+            <li><a href="#how-it-works" class="hover:text-[#38bdf8] transition-colors">How It Works</a></li>
+            <li><a href="#what-is-awg" class="hover:text-[#38bdf8] transition-colors">Atmospheric Moisture</a></li>
+            <li><a href="#why-awg" class="hover:text-[#38bdf8] transition-colors">UV-C Sterilization</a></li>
+            <li><a href="#calculator" class="hover:text-[#38bdf8] transition-colors">Cost Calculator</a></li>
+            <li><a href="#why-awg" class="hover:text-[#38bdf8] transition-colors">Sustainability</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-2 space-y-3">
+          <h4 class="font-heading font-bold text-[11px] uppercase tracking-wider text-white">SUPPORT</h4>
+          <ul class="space-y-2 text-[11.5px]">
+            <li><a href="#faq" class="hover:text-[#38bdf8] transition-colors">FAQ</a></li>
+            <li><a href="#faq" class="hover:text-[#38bdf8] transition-colors">Warranty Info</a></li>
+            <li><a href="#faq" class="hover:text-[#38bdf8] transition-colors">Filter Maintenance</a></li>
+            <li><a href="#faq" class="hover:text-[#38bdf8] transition-colors">Shipping & Returns</a></li>
+            <li><a href="tel:2133352121" class="hover:text-[#38bdf8] transition-colors">Customer Support</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-2 space-y-3">
+          <h4 class="font-heading font-bold text-[11px] uppercase tracking-wider text-white">CONTACT</h4>
+          <ul class="space-y-2.5 text-[11px]">
+            <li class="flex items-start gap-2">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-[#38bdf8] shrink-0 mt-0.5"></i>
+              <span>123 Water Street</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="building" class="w-3.5 h-3.5 text-[#38bdf8] shrink-0 mt-0.5"></i>
+              <span>Los Angeles, CA 90012</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="phone" class="w-3.5 h-3.5 text-[#38bdf8] shrink-0"></i>
+              <a href="tel:2133352121" class="hover:text-white transition-colors">(213) 335-2121</a>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="mail" class="w-3.5 h-3.5 text-[#38bdf8] shrink-0"></i>
+              <a href="mailto:orders@airtowatergenerators.com" class="hover:text-white transition-colors break-all">orders@airtowatergenerators.com</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#718aa8] gap-3">
+        <div>
+          © 2025 Air to Water Generators. All rights reserved.
+        </div>
+        <div class="flex items-center space-x-3 text-[11px]">
+          <a href="#" class="hover:text-[#cbd5e1] transition-colors">Privacy Policy</a>
+          <span class="text-[#3b5980]">|</span>
+          <a href="#" class="hover:text-[#cbd5e1] transition-colors">Terms of Sale</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <div id="quote-modal" class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-xs">
+    <div class="modal-content bg-white w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl p-6 sm:p-7 relative border border-slate-100">
+      
+      <button class="close-quote-modal absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-1.5 rounded-full hover:bg-slate-100 transition-colors">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="text-left mb-5">
+        <span class="text-[11px] font-extrabold tracking-widest text-brand-600 uppercase">OFFICIAL ORDER REQUEST</span>
+        <h3 class="font-heading text-xl font-bold text-[#0e1c36] mt-1">Order AWG Unit - $1,495</h3>
+        <p class="text-xs text-[#596780] mt-1">Special promotion: $500 off MSRP ($1,995). Free insured shipping included.</p>
+      </div>
+
+      <form id="quote-form" class="space-y-3.5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Full Name</label>
+            <input type="text" required placeholder="John Doe" class="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Email Address</label>
+            <input type="email" required placeholder="john@example.com" class="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Phone Number</label>
+            <input type="tel" required placeholder="(213) 000-0000" class="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Quantity</label>
+            <select class="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white">
+              <option>1 Unit ($1,495)</option>
+              <option>2 Units ($2,890 - Extra Save $100)</option>
+              <option>3+ Units (Commercial Bulk)</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Delivery Address & State</label>
+          <input type="text" required placeholder="Street Address, City, State, ZIP" class="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Primary Application</label>
+          <select class="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white">
+            <option>Home / Kitchen</option>
+            <option>Office / Break Room</option>
+            <option>Cabin / Off-Grid Living</option>
+            <option>Emergency Disaster Preparedness</option>
+          </select>
+        </div>
+
+        <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-lg text-xs uppercase tracking-wider shadow hover:shadow-md transition-all mt-1">
+          Lock In $1,495 Price & Order
+        </button>
+      </form>
+
+      <div id="quote-form-success" class="hidden text-center py-6 space-y-2.5">
+        <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
+          <i data-lucide="check" class="w-7 h-7 stroke-[3]"></i>
+        </div>
+        <h4 class="font-heading font-bold text-lg text-[#0e1c36]">Order Request Confirmed!</h4>
+        <p class="text-xs text-[#596780] max-w-xs mx-auto">Your promotion price ($1,495) has been secured. Our team will contact you directly within 2 hours to confirm delivery.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    (function() {
+      const words = ['Home', 'Office', 'Kitchen', 'Shop', 'Cabin', 'Factory', 'Break Room'];
+      let wordIdx = 0;
+      const el = document.getElementById('hero-rotating-word');
+      if (el) {
+        setInterval(() => {
+          wordIdx = (wordIdx + 1) % words.length;
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(4px)';
+          setTimeout(() => {
+            el.textContent = words[wordIdx];
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          }, 200);
+        }, 2200);
+        el.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+      }
+    })();
+
+    (function() {
+      const dailySlider = document.getElementById('daily-gallons');
+      const costSlider = document.getElementById('cost-per-gallon');
+      const dailyVal = document.getElementById('daily-gallons-val');
+      const costVal = document.getElementById('cost-per-gallon-val');
+      const curAnnual = document.getElementById('calc-current-annual');
+      const awgAnnual = document.getElementById('calc-awg-annual');
+      const netSavings = document.getElementById('calc-net-savings');
+      const payback = document.getElementById('calc-payback');
+
+      function updateCalc() {
+        if (!dailySlider || !costSlider) return;
+        const g = parseFloat(dailySlider.value);
+        const c = parseFloat(costSlider.value);
+        dailyVal.textContent = g + ' Gal/day';
+        costVal.textContent = '$' + c.toFixed(2) + ' / Gal';
+
+        const annualGal = g * 365;
+        const annualBottled = annualGal * c;
+        const annualAwg = annualGal * 0.08;
+        const saved = annualBottled - annualAwg;
+        const months = (1495 / (saved / 12)).toFixed(1);
+
+        curAnnual.textContent = '$' + Math.round(annualBottled).toLocaleString() + ' / yr';
+        awgAnnual.textContent = '$' + Math.round(annualAwg).toLocaleString() + ' / yr';
+        netSavings.textContent = '$' + Math.round(saved).toLocaleString() + ' / yr';
+        payback.textContent = saved > 0 ? 'Machine pays for itself in ~' + months + ' months!' : 'Calculated based on average power usage';
+      }
+
+      if (dailySlider && costSlider) {
+        dailySlider.addEventListener('input', updateCalc);
+        costSlider.addEventListener('input', updateCalc);
+        updateCalc();
+      }
+    })();
+
+    (function() {
+      document.querySelectorAll('.faq-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const content = btn.nextElementSibling;
+          const icon = btn.querySelector('.faq-icon');
+          const isHidden = content.classList.contains('hidden');
+          
+          document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+          document.querySelectorAll('.faq-icon').forEach(i => i.classList.remove('rotate-180'));
+
+          if (isHidden) {
+            content.classList.remove('hidden');
+            if (icon) icon.classList.add('rotate-180');
+          }
+        });
+      });
+    })();
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
